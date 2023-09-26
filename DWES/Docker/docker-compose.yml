@@ -1,13 +1,13 @@
 version: '3'
 services:
-  lamp:
+  alx_lamp:
     build: .
     ports:
-      - "81:22"
+      - "23:22"
       - "80:80"
     volumes:
       - ../:/var/www/html
       - ./mariadb:/var/lib/mysql
-      - ./php:/etc/php8.1/apache2
+      - ./php:/etc/php/8.1/apache2
     environment:
       MYSQL_ROOT_PASSWORD: password

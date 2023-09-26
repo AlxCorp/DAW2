@@ -1,0 +1,38 @@
+# Imagen Ubuntu 20.04
+FROM ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Paquetes LAMP
+RUN apt-get update
+RUN apt-get install -y apache2 mariadb-server php8.1 libapache2-mod-php php8.1-mysql
+RUN apt-get install -y openssh-server
+
+# Configura el servicio MariaDB (asegúrate de que esta configuración sea segura para producción)
+RUN service mariadb start && mariadb -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';" && \
+    mariadb -u root -ppassword -e "CREATE DATABASE main_database;"
+
+RUN echo 'root:password' | chpasswd
+RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+#RUN service ssh start && service apache2 start
+
+# Copia tu sitio web a la carpeta /var/www/html
+#COPY ../ /var/www/html/
+
+# Exponemos el puerto 80 para Apache y 22 para SSH
+EXPOSE 80
+EXPOSE 22
+
+# Inicia Apache en primer plano
+#CMD service ssh start
+#CMD /usr/sbin/sshd
+#CMD service mariadb start
+#CMD /usr/sbin/apache2ctl -D FOREGROUND
+
+#RUN mkdir -p /run/sshd
+#CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+#CMD ["/usr/sbin/sshd"]
+
+CMD systemctl enable apache2
+CMD systemctl start apache2
