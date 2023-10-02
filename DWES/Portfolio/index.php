@@ -5,15 +5,10 @@ Author: Alejandro Priego
 Date: 25/09/2023
 */
 
-//Variables
-$email = "alejandor@pfagot.com";
-$phone = "617555743";
-$nombre = "Alejandro";
-$apellidos = "Priego Izquierdo";
-$linkedin = "https://www.linkedin.com/in/apriego/";
-$twitter = "https://www.twitter.com/priegoooo/";
+include "./config.php";
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,23 +23,25 @@ $twitter = "https://www.twitter.com/priegoooo/";
     <header>
         <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-primary rounded-5 shadow-sm" id="pillNav2" role="tablist" style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white);">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active rounded-5" id="home-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="true">Unidad 1</button>
+                <a href="../Unidad 1" class="nav-link active rounded-5" id="home-tab2" aria-selected="true">Unidad 1</a>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link rounded-5" id="profile-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Unidad 2</button>
+                <a href="../Unidad 2" class="nav-link rounded-5" id="profile-tab2" aria-selected="false">Unidad 2</a>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link rounded-5" id="contact-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Unidad 3</button>
+                <a href="../Unidad 3" class="nav-link rounded-5" id="contact-tab2" aria-selected="false">Unidad 3</a>
             </li>
         </ul>
     </header>
 
     <main style="text-align: center">
-        <h1><?php echo $nombre, " ", $apellidos?></h1>
-        <h3>Teléfono: <?php echo $phone ?></h3>
-        <h3>Email: <?php echo $email ?></h3>
-        <h3>Linkedin: <a href="<?php echo $linkedin ?>">LINKEDIN</a></h3>
-        <h3>Twitter: <a href="<?php echo $twitter ?>">TWITTER</a></h3>
+        <img src="<?php echo $datos["foto"] ?>" alt="">
+        <h1><?php echo $datos["nombre"], " ", $datos["apellidos"]?></h1>
+        <h3>Categoría Profesional: <?php echo $datos["categoriaProfesional"] ?></h3>
+        <h3>Teléfono: <a href="tel:+34<?php echo $datos["phone"] ?>"><?php echo $datos["phone"] ?></a></h3>
+        <h3>Email: <a href="mailto:<?php echo $datos["email"] ?>"><?php echo $datos["email"] ?></a></h3>
+        <h3>Linkedin: <a href="<?php echo $datos["redesSociales"]["linkedin"] ?>">LINKEDIN</a></h3>
+        <h3>Twitter: <a href="<?php echo $$datos["redesSociales"]["linkedin"] ?>">TWITTER</a></h3>
     </main>
 </body>
 </html>
