@@ -7,20 +7,50 @@
             mostrará un fondo de pantalla con el color seleccionado. ¿Puedes hacerlo con los
             conocimientos que tienes?
 */
+
+$INCREMENTO = 40;
+$headerCounter = 1;
+
 ?>
 
+<head>
+    <style>
+        a {
+            text-align: center;
+            color: black;
+            display: block;
+            text-decoration: none;
+        }
+    </style>
+</head>
 
 <table>
     <th>Color</th>
-    <th>Hexadecimal</th>
-    
     <?php
-    for ($x = 0; $x < 10; $x++) {
-        echo("<tr>");
-        for ($y = 1; $y < 11; $y++) {
-            echo("<td>".(($x+1) * $y). "</td>");
+        for ($n = 0; $n+$INCREMENTO < 255; $n += $INCREMENTO) {
+            echo("<th> Variante ".$headerCounter."</th>");
+            $headerCounter++;
         }
-        echo("</tr>");
-    } ?>
+    
+    ?>
+
+    <?php
+        for ($r = 255; $r >= 0; $r -= $INCREMENTO) {
+            for ($g = 255; $g >= 0; $g -= $INCREMENTO) {
+                echo("<tr>");
+                for ($b = 255; $b >= 0; $b -= $INCREMENTO) {
+                    echo(
+                        '<td style="background-color: rgb('.$r.','.$g.','.$b.');'.
+                                    'width: 50px; height: 50px;">'
+                            .'<a href="./color.php?color='.dechex($r).dechex($g).dechex($b).'">'
+                                .dechex($r).dechex($g).dechex($b)
+                            ."</a>"
+                        .'</td>');
+                }
+                echo("</tr>");
+            }
+        }
+
+    ?>
 
 </table>

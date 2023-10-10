@@ -1,0 +1,135 @@
+<?php
+/**
+ * Función para limpiar datos de entrada
+ * parametro: cadena procedente de un fomrulario.
+ * return: cadena limpia.
+ */
+
+function test_input($data)
+{
+    $data = trim($data);
+    $data = stripcslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+// Definimos las variables tipo text con valor inicial, en  este caso
+$name = $email = $gender = $comment = $website = "";
+//Declarar variables error para las restricciones de entrada
+$nameErr = $emailErr = $websiteErr = "";
+
+$aGender = ["Hombre", "Mujer", "Otro"];
+$genderErr = "";
+
+$aOptions = [
+    [
+        "valor" => 1,
+        "literal" => "Opción 1"
+    ],
+    [
+        "valor" => 2,
+        "literal" => "Opción 2"
+    ],
+    [
+        "valor" => 3,
+        "literal" => "Opción 3"
+    ],
+    [
+        "valor" => 4,
+        "literal" => "Opción 4"
+    ]
+];
+$selectedOption = 1;
+
+$cars = ["Renault", "Mercedes", "Citroen", "Volvo", "Seat"];
+$selectedCars = [];
+
+$lprocessForm = false;
+$lerror = false;
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") { // Si viene desde el formulario
+    $lprocessForm = true;
+    if (empty($_POST["name"])) {
+        $nameErr = "El nombre es obligatorio";
+        $lerror = true;
+    } else {
+        $name = test_input($_POST["name"]);
+    }
+
+    if (empty($_POST["email"])) {
+        $nameErr = "El email es obligatorio";
+        $lerror = true;
+    } else {
+        $name = test_input($_POST["email"]);
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $emailErr = "Formato de correo incorrecto";
+            $lerror = true;
+        }
+    }
+
+    $website = test_input($_POST["website"]);
+    $comment = test_input($_POST["comment"]);
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <style>
+        .error {
+            color: red
+        }
+    </style>
+</head>
+
+<body>
+    <?php
+    if (!$lprocessForm) { ?>
+        <h1>Validación Formulario. PHP</h1>
+        <p><span class="error">* Campos requeridos...</span></p>
+        <form action="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>">
+            Nombre: <input type="text" name="name" value="<?php echo $name ?>">
+            <span class="error">*
+                <?php echo $nameErr ?>
+            </span><br><br>
+            Email: <input type="text" name="email" value="<?php echo $name ?>">
+            <span class="error">*
+                <?php echo $nameErr ?>
+            </span><br><br>
+            URL: <input type="text" name="url" value="<?php echo $name ?>">
+            <span class="error">*
+                <?php echo $nameErr ?>
+            </span><br><br>
+            Comentario: <input type="text" name="comment" value="<?php echo $name ?>">
+            <span class="error">*
+                <?php echo $nameErr ?>
+            </span><br><br>
+            Género: <input type="text" name="gender" value="<?php echo $name ?>">
+            <span class="error">*
+                <?php echo $nameErr ?>
+            </span><br><br>
+            Transporte: <input type="text" name="name" value="<?php echo $name ?>">
+            <span class="error">*
+                <?php echo $nameErr ?>
+            </span><br><br>
+        </form>
+    <?php } ?>
+</body>
+
+</html>
+
+
+
+Nombre
+Email
+url
+Comentario
+genero -> Radio Button un solo valor
+transporte -> Checkbox (puedes seleccionar varios)
+Opción -> Combo/Lista Desplegable
+Seleccion vehiculos multples -> Lista desplegable que puedes seleccionar varios (atributo multiple)
