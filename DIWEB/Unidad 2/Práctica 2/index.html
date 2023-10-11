@@ -37,54 +37,89 @@
         color: white;
       }
 
-      video, audio, figure {
+      video,
+      audio,
+      figure {
         background-color: antiquewhite;
+      }
+
+      ul {
+        list-style: none;
       }
     </style>
   </head>
   <body>
-    <header>Esto es un header</header>
-    <nav>Esto es un nav</nav>
-    <section>
-      Esto es una sección con
-      <article>
-        <h3>Artículo 1 - Vídeo</h3>
-        <span
-          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio
-          laboriosam quia, nobis ratione aliquid dolorem inventore quaerat.
-          Officia, aliquam? Consequatur ducimus atque, error fuga ab eos maxime
-          sed laudantium vitae?</span
-        >
-        <video controls src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" width="600px"></video>
-      </article>
-      <article>
-        <h3>Artículo 2 - Audio</h3>
-        <span
-          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio
-          laboriosam quia, nobis ratione aliquid dolorem inventore quaerat.
-          Officia, aliquam? Consequatur ducimus atque, error fuga ab eos maxime
-          sed laudantium vitae?</span
-        >
-        <audio controls>
-            <source src="https://raw.githubusercontent.com/rafaelreis-hotmart/Audio-Sample-files/master/sample.mp3">
-        </audio>
-      </article>
-      <article>
-        <h3>Artículo 3 - Figure</h3>
-        <span
-          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio
-          laboriosam quia, nobis ratione aliquid dolorem inventore quaerat.
-          Officia, aliquam? Consequatur ducimus atque, error fuga ab eos maxime
-          sed laudantium vitae?</span
-        >
-        <figure>
-            <img src="https://www.iesgrancapitan.org/wp-content/uploads/sites/2/2021/06/Logo_IES_GranCapitan_header.png">
+    <header><h1>Esto es un header</h1></header>
+    <nav>
+      <ul>
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Página 1</a></li>
+        <li><a href="#">Página 2</a></li>
+        <li><a href="#">Página 3</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </nav>
+    <main>
+      <section>
+        Esto es una sección con
+        <article>
+          <h3>Artículo 1 - Vídeo</h3>
+          <span
+            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio
+            laboriosam quia, nobis ratione aliquid dolorem inventore quaerat.
+            Officia, aliquam? Consequatur ducimus atque, error fuga ab eos
+            maxime sed laudantium vitae?</span
+          >
+          <video
+            controls
+            width="600px"
+          >
+            <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+            <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.avi" type="video/avi" />
+          </video>
+        </article>
+        <article>
+          <h3>Artículo 2 - Audio</h3>
+          <span
+            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio
+            laboriosam quia, nobis ratione aliquid dolorem inventore quaerat.
+            Officia, aliquam? Consequatur ducimus atque, error fuga ab eos
+            maxime sed laudantium vitae?</span
+          >
+          <audio controls>
+            <source
+              src="https://raw.githubusercontent.com/rafaelreis-hotmart/Audio-Sample-files/master/sample.mp3" type="audio/mpeg"
+            />
+          </audio>
+        </article>
+        <article>
+          <h3>Artículo 3 - Figure</h3>
+          <span
+            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio
+            laboriosam quia, nobis ratione aliquid dolorem inventore quaerat.
+            Officia, aliquam? Consequatur ducimus atque, error fuga ab eos
+            maxime sed laudantium vitae?</span
+          >
+          <figure>
+            <img
+              src="https://www.iesgrancapitan.org/wp-content/uploads/sites/2/2021/06/Logo_IES_GranCapitan_header.png"
+            />
             <figcaption>Esto es el logo del IES Gran Capitán</figcaption>
-        </figure>
-      </article>
-    </section>
+          </figure>
+        </article>
+      </section>
 
-    <aside>Esto es un aside</aside>
+      <aside>
+        <section>
+          <article>
+            <h4>Article dentro de una Section</h4>
+            <span>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, incidunt harum ut error excepturi omnis. Voluptatum repellat autem, optio dolorum nemo odit porro quas, nihil repellendus rem consequuntur sapiente commodi.
+            </span>
+          </article>
+        </section>
+      </aside>
+    </main>
 
     <footer>
       Esto es un footer
