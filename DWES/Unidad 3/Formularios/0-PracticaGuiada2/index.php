@@ -50,10 +50,12 @@ $selectedCars = [];
 
 // Lógica
 if ($_SERVER["REQUEST_METHOD"] == "POST") { // Si viene desde el formulario
+    global $lError;
     $lprocessForm = true;
 
     // Validamos Nombre
     if (empty($_POST["name"])) {
+        var_dump($_POST["name"]);
         $nameErr = "El nombre es obligatorio";
         $lerror = true;
     } else {
@@ -102,18 +104,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Si viene desde el formulario
 
     // Validamos Transporte
     if (isset($_POST["transport"])) {
-        var_dump($_POST["transport"]);
         if (count($_POST["transport"]) > count($aTransport)) {
             $transportErr = "Has seleccionado demasiado elementos";
             $lError = true;
         } else {
             foreach ($_POST["transport"] as $value) {
-                echo ($value);
-                if (in_array($value, $aTransport)) {
+                if ($value >= count($aTransport)) {
                     $transportErr = "Valores no válidos";
                     $lError = true;
                     break;
-                } 
+                }
             }
             if ($transportErr == "") {
                 $selectedTransports = $_POST["transport"];
@@ -121,22 +121,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Si viene desde el formulario
         }
     }
     
-    /*
-
     // Validamos Opción
     if (!empty($_POST["option"])) {
+        $encontrado = false;
         foreach ($aOptions as $option) {
-            if (!in_array($_POST["option"], $option)) {
-                $optionErr = "Valores no válidos";
-                $lError = true;
-                break;
+            if ($_POST["option"] == $option["valor"]) {
+                $encontrado = true;
             }
         }
-        if ($optionErr == "") {
-            $aOptions = $_POST["option"];
+        if (!$encontrado) {
+            $optionErr = "Valores no válidos";
+            $lError = true;
+        } else {
+            $selectedOption = $_POST["option"];
         }
     }
 
+    /*
 
     // Validamos Selección Múltiple Vehículos
     if (!empty($_POST["cars"])) {
@@ -182,7 +183,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Si viene desde el formulario
 
 <body>
     <h2>ERROR: "
-        <?php echo ($lError ? "true" : "false"); echo $transportErr?>"
+        <?php echo ($lError ? "true" : "false"); echo $nameErr?>"
     </h2>
     <form action="./" method="POST">
         <label for="name">Nombre:</label>
@@ -209,34 +210,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Si viene desde el formulario
 
         <?php
         foreach ($aTransport as $key => $value) {
-            if (in_array($value, $selectedTransports)) {
-                echo ('<input type="checkbox" name="transport[]" value="' . $value . '" checked>' . $value);
+            if (in_array($key, $selectedTransports)) {
+                echo ('<input type="checkbox" name="transport[]" value="' . $key . '" checked>' . $value);
+            } else {
+                echo ('<input type="checkbox" name="transport[]" value="' . $key . '">' . $value);
             }
-            echo ('<input type="checkbox" name="transport[]" value="' . $value . '">' . $value);
         }
         ?><br>
 
-        <!--
         <label for="option">Opciones:</label>
         <select name="option" id="option">
             <?php
             foreach ($aOptions as $value) {
                 if ($value["valor"] == $selectedOption) {
                     echo ('<option name="options[]" value="' . $value["valor"] . '" selected>' . $value["literal"]);
+                } else {
+                    echo ('<option name="options[]" value="' . $value["valor"] . '">' . $value["literal"]);
                 }
-                echo ('<option name="options[]" value="' . $value["valor"] . '">' . $value["literal"]);
             }
             ?>
         </select><br>
-
+        
+        <!--
         <label for="vehicles">Vehículos:</label>
         <select name="vehicles" id="vehicles" multiple>
             <?php
             foreach ($aCars as $key => $value) {
                 if (in_array($value, $selectedCars)) {
                     echo ('<option name="cars[]" value="' . $value . '" selected>' . $value);
+                } else {
+                    echo ('<option name="cars[]" value="' . $value . '">' . $value);
                 }
-                echo ('<option name="cars[]" value="' . $value . '">' . $value);
             }
             ?>
         </select><br><br>
@@ -248,7 +252,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Si viene desde el formulario
 </html>
 
 <!--
-<?php //echo implode(",", $_POST["transport"]) ?>
+<?php //echo [Folder Name] ?>
 
 Nombre
 Email
