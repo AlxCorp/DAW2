@@ -172,5 +172,5 @@ Investiga uso de print y printf para salida de texto.
 
          echo $descripcion;
       ?>
-
    ```
+   
