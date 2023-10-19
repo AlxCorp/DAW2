@@ -25,31 +25,9 @@ $headerCounter = 1;
             display: block;
             text-decoration: none;
         }
-        .boton {
-            display: inline-block;
-            padding: 12px 24px;
-            background-color: #3498db;
-            /* Color de fondo */
-            color: #ffffff;
-            /* Color del texto */
-            font-size: 24px;
-            border: none;
-            border-radius: 4px;
-            /* Bordes redondeados */
-            text-align: center;
-            text-decoration: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .boton:hover {
-            background-color: #2980b9;
-        }
         </style>
 </head>
 <body>
-    <a href="https://github.com/AlxCorp/DAW2/tree/main/DWES/Unidad%203/Bucles/4-PaletaDeColores"
-        class="boton">GitHub</a>
     <table>
         <th>Color</th>
         <?php
