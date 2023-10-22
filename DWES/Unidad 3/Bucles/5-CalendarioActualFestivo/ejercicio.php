@@ -5,9 +5,38 @@
  *   calendario mensual correspondiente. Marcar el día actual en verde y los festivos
  *   en rojo.
  */
-$MONTH = "14141";
+$MONTH = "11";
 $YEAR = 2023;
-$FESTIVOS = [];
+$FESTIVOS = [
+    "1-1",
+    // Año Nuevo
+    "6-1",
+    // Día de Reyes
+    "19-3",
+    // Día de San José
+    "1-5",
+    // Día del Trabajo
+    "15-8",
+    // Asunción de la Virgen
+    "12-10",
+    // Día de la Hispanidad
+    "1-11",
+    // Todos los Santos
+    "6-12",
+    // Día de la Constitución Española
+    "8-12",
+    // Inmaculada Concepción
+    "25-12",
+    // Navidad
+    "1-5",
+    // Día del Trabajo en Córdoba
+    "24-6",
+    // San Juan en Córdoba
+    "15-8",
+    // Asunción de la Virgen en Córdoba
+    "8-9",
+    // Día de la Virgen de la Salud en Córdoba capital
+];
 
 $monthDays = [
     ["Enero", 31],
@@ -35,19 +64,18 @@ function comprobarBisiesto($year): bool
 }
 ;
 
-if ($MONTH == "Febrero") {
+if ($MONTH == "2") {
     if (comprobarBisiesto($YEAR)) {
-        $numDays = $monthDays["Febrero"] + 1;
+        $numDays = $monthDays[1][1] + 1;
     }
 } else {
-    $numDays = $monthDays[$MONTH];
+    $numDays = $monthDays[$MONTH - 1][1];
 }
 
 $firstDay = date('w', mktime(0, 0, 0, $MONTH, 1, $YEAR));
-
-
-
-
+if ($firstDay == 0) {
+    $firstDay = 7; // Cambia el valor de 0 (domingo) a 7 para que el calendario comience en domingo
+}
 ?>
 
 <!DOCTYPE html>
@@ -56,10 +84,54 @@ $firstDay = date('w', mktime(0, 0, 0, $MONTH, 1, $YEAR));
 <head>
     <meta charset="UTF-8">
     <title>Ejercicio 5</title>
+    <style>
+        .current {
+            background-color: greenyellow;
+        }
+
+        .holiday {
+            background-color: red;
+            color: white;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            height: 70vh;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+
+        th:first-child {
+            background-color: #555;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+
 </head>
 
 <body>
-    <h2>Calendario de <?php echo($MONTH." ". $YEAR) ?></h2>
+    <h2>Calendario de
+        <?php echo ($monthDays[$MONTH - 1][0] . " de " . $YEAR) ?>
+    </h2>
     <table border='1'>
         <tr>
             <th>Lun</th>
@@ -71,15 +143,31 @@ $firstDay = date('w', mktime(0, 0, 0, $MONTH, 1, $YEAR));
             <th>Dom</th>
         </tr>
         <tr>
-        <?php 
-        for ($i = 0; $i < $firstDay; $i++) {
-            echo "<td></td>";
-        }
+            <?php
+            $currentDay = 1;
+            for ($i = 0; $i < 6; $i++) {
+                for ($j = 0; $j < 7; $j++) {
+                    if ($i === 0 && $j < $firstDay - 1) {
+                        echo "<td></td>";
+                    } elseif ($currentDay <= $numDays) {
+                        $dayClass = "";
+                        if ($currentDay == date("d") && $MONTH == date("m")) {
+                            $dayClass = "current";
+                        }
+                        if (in_array($currentDay . "-" . $MONTH, $FESTIVOS)) {
+                            $dayClass = "holiday";
+                        }
+                        echo "<td class='$dayClass'>$currentDay</td>";
+                        $currentDay++;
+                    }
 
-        echo($firstDay)
-        ?>
-    </tr>
-</table>
+                }
+                echo "</tr><tr>";
+            }
+
+            ?>
+        </tr>
+    </table>
 </body>
 
 </html>
