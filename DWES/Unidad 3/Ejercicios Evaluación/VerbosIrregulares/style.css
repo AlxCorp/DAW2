@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    text-align: center;
+    padding: 40px;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+#title {
+    color: rebeccapurple;
+    font-weight: bold;
+    font-size: 60px;
+    text-decoration: underline;
+}
+
+h4 {
+    margin-bottom: 30px;
+}
+
+input {
+    margin-bottom: 10px;
+}
+
+#jugar {
+    margin-top: 50px;
+    background-color: blue;
+    padding: 50px 90px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}

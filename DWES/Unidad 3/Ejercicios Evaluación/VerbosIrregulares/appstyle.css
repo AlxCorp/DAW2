@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+body {
+    background-color: wheat;
+}
+
+table {
+    margin: auto;
+    border-collapse: separate;
+    border-spacing: 50px 20px;
+  }
+
+th {
+    font-weight: bold;
+    font-size: 40px;
+}
+
+td {
+    font-size: 20px;
+}
+
+#comprobar {
+    background-color: orange;
+    font-weight: bold;
+    font-size: 30px;
+    padding: 10px 30px;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+.correcto {
+    background-color: green;
+    color: white;
+}
+
+.incorrecto {
+    background-color: red;
+    color: white;
+}
+
+.correctos {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: green;
+}
+
+.incorrectos {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: red;
+}
+
+.porcentaje {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.winned {
+    font-size: 60px;
+    font-weight: bold;
+    background-color: blueviolet;   
+    margin-top: 40px;
+    color: white;
+}
