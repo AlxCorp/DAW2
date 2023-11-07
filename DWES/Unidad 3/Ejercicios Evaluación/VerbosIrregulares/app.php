@@ -68,7 +68,7 @@ function getFieldPositions() {
                     if (!in_array($n, $randomFieldPositions)) {
                         array_push($fields, $verbs[$v][$n]);
                     } else {
-                        array_push($fields, '<input type="text" name="verbs['.$v.']['.$n.']" required>');
+                        array_push($fields, '<input type="text" name="verbs['.$v.']['.$n.']" required autocomplete="off">');
                     }
                 }
 

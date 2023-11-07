@@ -76,9 +76,9 @@ $incorrectos = 0;
                 echo ("<td>".$fields[2]."</td>");
                 echo ("<td>".$fields[3]."</td>");
                 echo("</tr>");
+
+                array_push($fieldsToReturnAll, $fieldsToReturn);
             }
-  
-            array_push($fieldsToReturnAll, $fieldsToReturn);
         ?>
         </form>
     </table>
@@ -89,19 +89,17 @@ $incorrectos = 0;
     <?php 
         if ($incorrectos == 0) {
             echo('<h1 class="winned">🧅🍐🧅🍐!!!!CONGRATULATIONS!!!!🍐🧅🍐🧅</h1>');
+        } else {
+            $valorCampoHidden = serialize($fieldsToReturnAll);
+            $valorCampoHiddenEscapado = htmlspecialchars($valorCampoHidden, ENT_QUOTES, 'UTF-8');
+
+            echo('<form action="respuestas.php" method="POST">');
+                echo('<input type="hidden" value="'.$valorCampoHiddenEscapado.'" name="allVerbs">');
+                echo('<input type="submit" value="Mostrar Respuestas" id="mostrarRespuestas">');
+            echo('</form>');
         }
     ?>
 
-    <form action="respuestas.php" method="POST">
-        <!-- ARRAY CON NUMERO DE VERBOS SELECCIONADOS
-        <input type="hidden" value="<?php echo(implode(',', $selectedVerbs)) ?>" name="selectedVerbs">
 
-         ARRAY CON NUMERO DE VERBOS SELECCIONADOS
-         <input type="hidden" value="<?php echo(implode(',', $_POST["verbs"])) ?>" name="verbs"> -->
-
-        <!-- <input type="hidden" value="<?php echo($datosSerializados = json_encode($fieldsToReturnAll)) ?>" name="allVerbsFromApp"> -->
-        <input type="hidden" value="<?php echo($fieldsToReturnAll) ?>" id="allVerbs">
-        <input type="submit" value="Mostrar Respuestas" id="mostrarRespuestas">
-    </form>
 </body>
 </html> 

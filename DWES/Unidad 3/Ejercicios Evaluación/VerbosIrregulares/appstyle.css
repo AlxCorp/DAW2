@@ -69,3 +69,18 @@ td {
     margin-top: 40px;
     color: white;
 }
+
+#mostrarRespuestas {
+    margin-top: 20px;
+    padding: 20px 60px;
+    border-radius: 0;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+#mostrarRespuestas:hover {
+    color: gray;
+}
