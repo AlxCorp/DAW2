@@ -1,4 +1,9 @@
 <?php 
+/**
+ * Crear una aplicación que permita practicar tests de autoescuela.
+ * @author Alejandro Priego Izquierdo
+ * @date 09/11/2023
+ */
 require_once("config/tests_cnf.php");
 ?>
 

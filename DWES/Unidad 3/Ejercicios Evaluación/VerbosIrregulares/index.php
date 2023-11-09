@@ -15,7 +15,10 @@
  * 
  *      • Opción que permita mostrar todas las respuestas.
  * 
- *      • Aplicar estilos y criterios de usabilidad.    
+ *      • Aplicar estilos y criterios de usabilidad.   
+ *
+ * @author Alejandro Priego Izquierdo
+ * @date 09/11/2023
  */
 ?>
 
