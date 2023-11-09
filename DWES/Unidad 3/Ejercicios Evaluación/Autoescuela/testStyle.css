@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: aquamarine;
+    text-align: center;
+    padding: 20px 0;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+.permiso {
+    display: block;
+}
+
+section {
+    max-width: 80%;
+    margin: 40px auto 20px;
+    padding: 40px;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+section img {
+    margin-right: 15px;
+}
+
+.questionTitle {
+    font-size: 20px;
+    vertical-align: top;
+    font-weight: bold;
+}
+
+section hr {
+    margin: 10px 0;
+}
+
+#corregir {
+    padding: 20px 40px;
+}
