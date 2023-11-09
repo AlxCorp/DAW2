@@ -3,6 +3,11 @@
     padding: 0;
 }
 
+body {
+    background-color: lightblue;
+    font-family: 'Cantarell', sans-serif;
+}
+
 header {
     background-color: aquamarine;
     text-align: center;
@@ -23,6 +28,7 @@ section {
     padding: 40px;
     border: 2px solid black;
     border-radius: 20px;
+    background-color: lightcyan;
 }
 
 section img {
@@ -39,6 +45,28 @@ section hr {
     margin: 10px 0;
 }
 
+#corregirContainer {
+    text-align: center;
+}
+
 #corregir {
     padding: 20px 40px;
+}
+
+label {
+    font-size: 18px;
+}
+
+.mal {
+    color: red;
+}
+
+.bien {
+    color: green;
+}
+
+.emoji {
+    text-align: center;
+    font-size: 100px;
+    margin: 20px 0 0;
 }
