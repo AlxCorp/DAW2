@@ -14,13 +14,15 @@ $aUsuarios = [
 ];
 
 $anonF = function($user) {
-    $a1 = "";
+    $a1 = $user["apellido1"][0].$user["apellido1"][1];
     $a2 = "";
-    $n1 = "";
+    $n1 = $user["nombre"][0];
 
-
+    if ($user["apellido2"] != "") {
+        $a2 = $user["apellido2"][0].$user["apellido2"][1];
+    }
     
-    return ($user["apellido1"][0].$user["apellido1"][1].$user["apellido2"][0].$user["apellido2"][1].$user["nombre"][0]."<br>");
+    return ($a1.$a2.$n1."<br>");
 }
 ?>
 
