@@ -4,14 +4,30 @@ require_once("../vendor/autoload.php");
 
 use App\Core\Router;
 use App\Controllers\IndexController;
+use App\Controllers\NumberController;
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 $router = new Router();
-$controller = new IndexController();
 
 $router->add([
-    "name" => "home",
-    "path" => "/^\/$/",
-    "action" => [IndexController::class, "IndexAction"],
+    'name' => 'home',
+    'path' => '/^\/$/',
+    'action' => [IndexController::class, 'IndexAction'],
+]);
+
+$router->add([
+    'name' => 'saludo',
+    'path' => '/^\/saludo\/[A-z]+$/',
+    'action' => [IndexController::class, 'SaludaAction'],
+]);
+
+$router->add([
+    'name' => 'pares',
+    'path' => '/^\/pares\/\d+$/',
+    'action' => [NumberController::class, 'NumberAction'],
 ]);
 
 $request = str_replace(DIRBASEURL, "", $_SERVER["REQUEST_URI"]);
@@ -23,6 +39,6 @@ if ($route) {
     $controller = new $controllerName;
     $controller->$actionName($request);
 } else {
-    echo("kk");
+    echo("No hay ruta");
 }
 ?>

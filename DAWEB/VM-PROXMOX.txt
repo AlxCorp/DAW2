@@ -1,0 +1,20 @@
+PROXMOX:
+https://192.168.12.5:8006
+wp1094
+abcd1234$
+
+DEBIAN:
+ssh -p 9020 usuario@cpd.iesgrancapitan.org
+administrador
+1234
+
+DB:
+wordpress94
+wordpress94
+password1234@@..
+
+WORDPRESS:
+http://192.168.12.94/
+http://192.168.12.94/wp-login.php
+wp1094
+abcd1234$

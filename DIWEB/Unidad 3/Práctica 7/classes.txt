@@ -1,0 +1,19 @@
+:in-range 	Selecciona un elemento cuyo valor se encuentra dentro de un rango de valores determinado.
+:invalid 	Selecciona un elemento, como por ejemplo un <input>, cuyo estado es no válido.
+:lang 	Selecciona un elemento según el idioma (valor del atributo lang de HTML).
+:last-child 	Selecciona el último elemento de entre sus elementos hermanos.
+:last-of-type 	Selecciona el último de entre los elementos hermanos de un tipo determinado.
+:left 	En Paged Media (en-US) selecciona las páginas de la izquierda.
+:link 	Selecciona los enlaces no visitados.
+:local-link (en-US) 	Selecciona los enlaces que dirigen a páginas que se encuentran en la misma página web que el documento activo.
+:is() 	Selecciona cualquiera de los selectores de la lista de selección que se pase como valor de este selector.
+:not 	Selecciona elementos que otros selectores no han seleccionado antes y que se han pasado como valor de este selector.
+:nth-child 	Selecciona elementos de entre una lista de elementos hermanos. Los elementos hermanos están relacionados por una fórmula del tipo an + b (por ejemplo, 2n + 1 seleccionaría los elementos 1, 3, 5, 7, etc., es decir, todos los impares).
+:nth-of-type 	Selecciona elementos de entre una lista de elementos hermanos de un tipo determinado (por ejemplo, todos los elementos <p>). Los elementos hermanos están relacionados por una fórmula del tipo an + b (por ejemplo, 2n + 1 relacionaría en la secuencia ese tipo de elementos, los números 1, 3, 5, 7, etc., es decir, todos los impares).
+:nth-last-child 	Selecciona elementos de entre una lista de elementos hermanos, contando hacia atrás desde el final. Los elementos hermanos están relacionados por una fórmula del tipo an+b (por ejemplo, 2n + 1 r_elacionaría en la secuencia el último de los elementos de este tipo con el que se encuentra dos por delante, y así sucesivamente. Todos los impares, contando desde el final).
+:nth-last-of-type 	Selecciona los elementos de entre una lista de elementos hermanos que son de un tipo determinado (por ejemplo, elementos <p>), contando hacia atrás desde el final. Los elementos hermanos están relacionados por una fórmula del tipo an+b (por ejemplo, 2n + 1 relacionaría en la secuencia el último de los elementos de ese tipo con el que se encuentra dos por delante, y así sucesivamente. Todos los impares, contando desde el final).
+:only-child 	Selecciona un elemento que no tiene elementos hermanos.
+:only-of-type 	Selecciona un elemento que es el único de su tipo entre sus elementos hermanos.
+:optional 	Selecciona los elementos de formulario que son innecesarios.
+:out-of-range 	Selecciona un elemento cuyo valor está fuera de rango.
+:past (en-US) 	Selecciona los elementos que se encuentran antes del elemento activo.
