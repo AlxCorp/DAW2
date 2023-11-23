@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+body {
+    background-color: black;
+    text-align: center;
+}
+
+h1 {
+    font-size: 80px;
+    font-weight: 400;
+}
+
+h1 span {
+    color: greenyellow;
+    font-size: 90px;
+    font-weight: bold;
+}
+
+form div{
+    display: block;
+    margin: 20px;
+}
+
+button {
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+    padding: 30px 80px;
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
+button:hover {
+    background-color: gray;
+}

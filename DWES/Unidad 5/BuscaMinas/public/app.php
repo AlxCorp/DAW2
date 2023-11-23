@@ -1,7 +1,7 @@
 <?php 
 require_once("../app/Config/config.php");
 
-if (!isset($_POST("mine_number")) || !isset($_POST("table_size"))) {
+if (isset($_POST("mine_number")) || isset($_POST("table_size"))) {
 
 };
 
