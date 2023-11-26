@@ -1,10 +1,11 @@
 /*USAR POSITION NO FLOAT*/
 
 * {
-  margin: 0;
-  padding: 0;
+  font-family: sans-serif;
   list-style: none;
   text-decoration: none;
+  margin: 0;
+  padding: 0;
 }
 
 .nav > li {
@@ -12,13 +13,44 @@
 }
 
 .nav li a {
-  background: #0c9ba0;
+  background: #5c0167;
   color: #fff;
   display: block;
   border: 1px solid;
-  padding: 10px 12px;
+  padding: 15px 25px;
 }
 
 .nav li a:hover {
-  background: #0fbfc6;
+  background: rgb(185, 5, 143);
 }
+
+.nav li ul {
+  display: none;
+  position: absolute;
+  min-width: 140px;
+}
+
+.nav li:hover > ul {
+  display: block;
+}
+
+.nav li ul li {
+  position: relative;
+}
+
+.nav li ul li ul {
+  right: -140px;
+  top: 0;
+}
+
+.nav li .flecha {
+  font-size: 8px;
+  padding-left: 10px;
+  display: none;
+}
+
+.nav li a:not(:last-child) .flecha {
+  display: inline;
+}
+
+
