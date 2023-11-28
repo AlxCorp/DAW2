@@ -1,13 +1,46 @@
 version: '3'
+
 services:
-  alx_lamp:
+  web_lamp:
     build: .
     ports:
       - "23:22"
       - "80:80"
+      - "443:443"
     volumes:
       - ../:/var/www/html
-      - ./mariadb:/var/lib/mysql
-      - ./php:/etc/php/8.1/apache2
+      - ./php/php.ini:/etc/php/8.1/apache2/php.ini
+    links:
+      - db
+
+  db:
+    image: mariadb:latest
+    container_name: db_dwes
+    ports:
+      - "3306:3306"
+    command: --default-authentication-plugin=mysql_native_password
     environment:
+      MYSQL_DATABASE: defaultDB
+      MYSQL_USER: apriego
+      MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - persistent:/var/lib/mysql
+    networks:
+      - default
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - db:db
+    ports:
+      - 8000:80
+    environment:
+      MYSQL_USER: apriego
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+
+
+
+volumes:
+  persistent:
