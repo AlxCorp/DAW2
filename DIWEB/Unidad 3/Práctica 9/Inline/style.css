@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    padding: 20px 0;
+}
+
+header p {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.header-nav {
+    padding: 20px 0;
+    border: 2px solid black;
+}
+
+header li {
+    display: inline;
+    margin: 0px 10vh;
+    padding: 10px 0;
+    border: 2px solid black;
+}
+
+header li a {
+    text-decoration: none;
+    padding: 0 30px;
+    color: black;
+} 
+
+main {
+    display: inline-block;
+    padding:  20px 50px;
+    max-width: 160vh;
+    border: 2px solid black;
+}
+
+.card {
+    width: 40vh;
+    border: 2px solid black;
+    display: inline-block;
+    margin: 0px 30px 30px 0;
+    padding: 20px;
+}
+
+aside {
+    display: inline-block;
+    border: 2px solid black;
+    text-align: center;
+    max-width: 30vh;
+    padding: 0 5vh;
+    padding-top: 20px;
+    height: 536px;
+    vertical-align:top;
+}
+
+.archive {
+    border: 2px solid black;
+    padding-bottom: 10px;
+    margin-bottom: 50px;
+}
+
+.archive>p {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.archive a {
+    display: inline-block;
+    padding-bottom: 20px;
+}
+
+.archive a img {
+    display: inline-block;
+}
+
+.archive a p {
+    display: inline-block;
+}
+
+.ads {
+    border: 2px solid black;
+}
+
+.ads > p {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+footer {
+    padding: 30px 80px;
+}
+
+footer>div {
+    display: inline-block;
+}
+
+.footer-left {
+    /* vertical-align: top; */
+    width: 50%;
+}
+
+.footer-left p {
+    font-size: 30px;
+}
+
+.footer-right {
+    padding-left: 35vh;
+}
+
+.footer-link {
+    display: inline-block;
+    text-align: center;
+    padding: 0 10px;
+}
+
+.footer-link {
+    text-decoration: none;
+    color: black;
+}
