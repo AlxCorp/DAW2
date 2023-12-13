@@ -1,0 +1,244 @@
+:root{
+
+	--primary-text-color: #1B1D1D;
+	--secondary-text-color: #FFF;
+	--secondary-color:  rgba(245,246,246,0.8);
+	--color-formula1: #FF1E00;
+	--primary-color-wec: #00236F;
+	--secondary-color-wec: #5CBB0A;
+	--color-dakar: #C13A1C;
+	--color-indy:#0075C9;
+	--color-alpine: #0071C2;
+	--color-AM: #00352E;
+	
+	--degradado-dakar-indy: linear-gradient(to right,var(--color-dakar),var(--color-indy)) no-repeat;
+	--degradado-wec: linear-gradient(to right,var(--primary-color-wec),var(--secondary-color-wec)) no-repeat;
+	--degradado-AM-alpine-wec-f1: linear-gradient(to right,var(--color-AM), var(--color-alpine),var(--primary-color-wec),var(--color-formula1)) no-repeat;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: var(--primary-text-color);
+    background-image: url("../imagenes/huella_rueda.png");
+}
+
+.black-bold {
+    font-weight: bold;
+}
+
+/* ------------------- HEADER ------------------- */
+
+header {
+    width: 100%;
+    display: grid;
+    text-align: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    background: var(--degradado-AM-alpine-wec-f1);
+    margin-bottom: 50px;
+    padding: 5px 0;
+}
+
+.header-left {
+    text-align: start;
+}
+
+.header-logo{
+    height: 60px;
+}
+
+header h1 {
+    color: var(--secondary-text-color);
+    text-shadow: 2px 2px 2px var(--color-AM);
+}
+
+header h2 {
+    color: var(--color-AM);
+    text-shadow: 2px 2px 2px var(--secondary-text-color);
+    font-weight: 400;
+}
+
+/* ------------------- MAIN ------------------- */
+
+main {
+    display: grid;
+    grid-template-columns: 33% 66%;
+    gap: 20px;
+}
+
+section {
+    background-color: white;
+    padding: 0 40px 40px;
+}
+
+.section-no-padd {
+    padding: 0;
+}
+
+.main-section {
+    background-color: rgb(0, 0, 0, 0);
+}
+
+
+.section-right {
+    width: 2fr;
+}
+
+ul {
+    margin-top: 20px;
+    padding: 0 40px;
+}
+
+.upper-section-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--color-AM);
+    margin-bottom: 20px;
+}
+
+/* ------------------- LEFT SECTION ------------------- */
+
+.section-left {
+}
+
+figure {
+    background-color: white;
+}
+
+.section-left figure {
+    border: 1px solid black;
+    padding: 20px;
+    transition-duration: 1s;
+}
+
+.section-left figure:hover {
+    border: 0px solid black;
+    box-shadow: 0 0 10px black ;
+}
+
+.section-left figure img {
+    width: 100%;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    margin-top: 60px;
+}
+
+.first-secc-title {
+    margin-top: 40px;
+}
+
+.section-title-palmares-f1{
+    background-color: var(--color-formula1);
+}
+
+.section-title-palmares-wec{
+    background: var(--degradado-wec);
+}
+
+.section-title-palmares-dakindy{
+    background: var(--degradado-dakar-indy);
+}
+
+/* ------------------- RIGHT SECTION ------------------- */
+
+article {
+    padding: 20px;
+    background-color: white;
+}
+
+.section-right-cards {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 40px;
+}
+
+.section-right-cards article:first-child {
+    border: 1px solid var(--color-formula1);
+    transition-duration: 1s;
+}
+
+.section-right-cards article:first-child:hover {
+    border: 0px solid var(--color-formula1);
+    box-shadow: 0 0 10px var(--color-formula1) ;
+}
+
+
+.section-right-cards article:last-child {
+    border: 1px solid var(--primary-color-wec);
+    transition-duration: 1s;
+}
+
+.section-right-cards article:last-child:hover {
+    border: 0px solid var(--primary-color-wec);
+    box-shadow: 0 0 10px var(--primary-color-wec) ;
+}
+
+.section-right-cards img {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.section-right-33 article {
+    border: 1px solid var(--color-AM);
+}
+
+.section-right-33 img {
+    width: 100%;
+}
+
+.cmq33 {
+    font-size: 30px;
+    font-weight: bold;
+    text-shadow: 0px 3px 0px var(--secondary-color); /* Efecto de sombra del texto */
+}
+
+.bicampeon-mundo {
+    margin: 20px 0;
+}
+
+/* ------------------- FLOAT MENU ------------------- */
+
+aside {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 50%;
+    right: 0; 
+    background-color: var(--secondary-color);
+    padding: 18px;
+    transform: translateY(-50%);
+}
+
+aside span {
+    font-weight: bold;
+    font-size: 40px !important;
+    margin: 10px 0;
+    animation-duration: 1s;
+}
+
+aside span:hover {
+    animation-name: spin;
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(1080deg);
+        font-size: 60px !important;
+        color: var(--color-formula1);
+    }
+}
