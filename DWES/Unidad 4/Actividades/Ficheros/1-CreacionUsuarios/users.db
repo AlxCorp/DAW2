@@ -1,0 +1,5 @@
+CREATE DATABASE usuarios
+GRANT ALL PRIVILEGES ON usuarios.* TO 'PrIzA_1daw'@'localhost' IDENTIFIED BY 'password'
+GRANT ALL PRIVILEGES ON usuarios.* TO 'FeDeP_1daw'@'localhost' IDENTIFIED BY 'password'
+GRANT ALL PRIVILEGES ON usuarios.* TO 'MuEsJ_2daw'@'localhost' IDENTIFIED BY 'password'
+GRANT ALL PRIVILEGES ON usuarios.* TO 'FeQuI_1asir'@'localhost' IDENTIFIED BY 'password'
