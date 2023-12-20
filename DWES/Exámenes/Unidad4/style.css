@@ -1,0 +1,23 @@
+.navbar {
+    margin: 20px;
+    padding: 20px;
+}
+
+.card-deck {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    padding: 50px 100px;
+    gap: 20px;
+}
+
+.imagen-pizza {
+    width: 100%;
+}
+
+.pendientes {
+    display: flex;
+}
+
+footer {
+    display: flex;
+}
