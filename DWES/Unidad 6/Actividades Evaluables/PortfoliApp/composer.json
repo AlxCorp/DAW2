@@ -1,0 +1,22 @@
+{
+    "name": "alx/portoliapp",
+    "description": "Web app to create and view portfolios",
+    "type": "project",
+    "require": {
+        "vlucas/phpdotenv": "5.6.x-dev",
+        "symfony/mailer": "7.1.x-dev"
+    },
+    "license": "GPL",
+    "autoload": {
+        "psr-4": {
+            "Alx\\Portfoliapp\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "AlxCorp",
+            "email": "alejandro@pfagot.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
