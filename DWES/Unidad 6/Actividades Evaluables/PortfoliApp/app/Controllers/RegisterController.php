@@ -40,14 +40,14 @@ class RegisterController extends Controller{
         $data['token_creation_date'] = date('Y-m-d H:i:s');
 
 
-        //$userModel = new User();
+        $userModel = new User();
 
-        //try {
-        //    $userModel->register($data);
-        //} catch (Exception $e) {
-        //    echo 'Error: '.  $e->getMessage();
-        //    exit(1);
-        //}
+        try {
+            $userModel->register($data);
+        } catch (Exception $e) {
+            echo 'Error: '.  $e->getMessage();
+            exit(1);
+        }
 
         $emailSender = new EmailSender();
         $emailSender->sendConfirmationMail($data['name'], $data['surname'], $data['email'], $data['token']);
@@ -60,7 +60,8 @@ class RegisterController extends Controller{
     }
 
     private function encryptPassword($password) {
-        return $password;
+        $cryptPassword = password_hash($password, PASSWORD_BCRYPT);
+        return $cryptPassword;
     }
 
     private function testData($data) {
