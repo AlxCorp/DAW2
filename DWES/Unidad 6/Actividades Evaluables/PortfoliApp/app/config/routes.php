@@ -1,26 +1,25 @@
 <?php
 
 use Alx\Portfoliapp\Entities\Router;
+use Alx\Portfoliapp\Controllers\IndexController;
+use Alx\Portfoliapp\Controllers\LoginController;
+use Alx\Portfoliapp\Controllers\RegisterController;
+use Alx\Portfoliapp\Controllers\SearchController;
 
-Router::get('/', function() {
-	include "../app/views/index_view.php";
+Router::get('/', [IndexController::class, 'view']);
+
+Router::get('/registro/validar/:slug', function ($token){
+    $RegisterController = new RegisterController();
+    $RegisterController->validateView($token);
 });
 
-Router::get('/registro/validar', function() {
-	include "../app/views/validate_view.php";
-});
+Router::get('/registro', [RegisterController::class, 'view']);
 
-Router::get('/registro', function() {
-	include "../app/views/register_view.php";
-});
+Router::post('/registro', [RegisterController::class, 'form']);
 
-Router::get('/login', function() {
-	include "../app/views/login_view.php";
-});
+Router::get('/login', [LoginController::class, 'view']);
 
-Router::get('/busqueda', function() {
-	include "../app/views/search_view.php";
-});
+Router::get('/busqueda', [SearchController::class, 'view']);
 
 Router::dispatch();
 ?>
