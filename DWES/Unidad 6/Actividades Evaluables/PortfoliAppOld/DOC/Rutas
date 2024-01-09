@@ -1,0 +1,5 @@
+/ -> Landing (Búsqueda de portfolios)
+/registro -> Registro usuarios
+/registro/validar -> Validamos Registros
+/login -> Login y crea sesión
+/busqueda -> Aquí vienen las búsquedas del buscador (Parámetros por get)

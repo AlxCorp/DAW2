@@ -32,9 +32,10 @@ class User {
     public function query($query) {
         try {
             $this->query = $this->connection->query($query);
-        } catch(Exception $e) {
-            echo $e->getMessage();
-         }  
+        } catch (\mysqli_sql_exception $e) {
+            return 'Error MYSQL: '.$e;
+        }
+
         return $this;
     }
 
@@ -43,8 +44,27 @@ class User {
     }
 
     public function get() {
+        if (is_null($this->query)) {
+            return NULL;
+        }
         return $this->query->fetch_all(MYSQLI_ASSOC);
     }
+
+    // Reusable Functions
+
+    public function getName($id) {
+        $this->query("SELECT name FROM Users WHERE id='{$id}'");
+        $response = $this->first();
+        return ($response['name']);
+    }
+
+    public function getProfileImg($userId) {
+        $this->query("SELECT photo FROM Users WHERE id='{$userId}'");
+        $response = $this->first()['photo'];
+        return $response;
+    }
+
+    // Register Functions
 
     public function register($data) {
         $columns = array_keys($data);
@@ -57,6 +77,184 @@ class User {
 
         return "OK"; 
     }
+
+    // Validate Account Functions
+    
+    public function getTokenCreationDate($token) {
+        $this->query("SELECT id, token_creation_date FROM Users WHERE token='{$token}'");
+        return $this->first();
+    }
+
+    public function activateAccount($id) {
+        $this->query("UPDATE Users SET active_account=1 WHERE id={$id}");
+    }
+
+    public function isActivated($id) {
+        $this->query("SELECT active_account FROM Users WHERE id='{$id}'");
+        $response = $this->first()['active_account'];
+        return $response === "1" ? true : false;
+    }
+
+    // Login Account Functions
+
+    public function firstTime($id) {
+        $this->query("SELECT created_at, updated_at FROM Users WHERE id='{$id}'");
+        $response = $this->first();
+        return ($response['created_at'] == $response['updated_at']);
+    }
+
+    public function userExistFromEmail($email) {
+        $this->query("SELECT id FROM Users WHERE email='{$email}'");
+        $response = $this->first();
+        return is_null($response['id']) ? false : $response['id'];
+    }
+
+    public function validatePassword($userId, $password) {
+        $this->query("SELECT password FROM Users WHERE id='{$userId}'");
+        $response = $this->first();
+        return $response['password'];
+    }
+
+    // First Time Form Functions
+
+    public function getMailFromId($userId) {
+        $this->query("SELECT email FROM Users WHERE id='{$userId}'");
+        $response = $this->first();
+        return $response['email'];
+    }
+
+    public function insertProfileImg($userId, $imgName) {
+        $this->query("UPDATE Users SET photo='{$imgName}' WHERE id={$userId}");
+        return "OK"; 
+    }
+
+    public function insertCategoriaProf($userId, $categoriaProf) {
+        $this->query("UPDATE Users SET categoria_profesional='{$categoriaProf}' WHERE id={$userId}");
+        return "OK"; 
+    }
+
+    public function insertSummary($userId, $summary) {
+        $this->query("UPDATE Users SET profile_summary='{$summary}' WHERE id={$userId}");
+        return "OK"; 
+    }
+
+    public function makeProfileVisible($userId) {
+        $this->query("UPDATE Users SET visible=1 WHERE id={$userId}");
+    }
+
+    public function modifyEditDate($userId, $editDate) {
+        $this->query("UPDATE Users SET updated_at='{$editDate}' WHERE id={$userId}");
+    }
+
+    // Dashboard Functions
+
+    public function getJobs($userId) {
+        $this->query("SELECT id, title, visible, updated_at FROM Jobs WHERE user_id='{$userId}'");
+        $response = $this->get();
+        return $response;
+    }
+
+    public function getProjects($userId) {
+        $this->query("SELECT id, title, logo, visible, updated_at FROM Projects WHERE user_id='{$userId}'");
+        $response = $this->get();
+        return $response;
+    }
+
+    public function getSocialNetworks($userId) {
+        $this->query("SELECT id, name, url, updated_at FROM Social_Networks WHERE user_id='{$userId}'");
+        $response = $this->get();
+        return $response;
+    }
+
+    public function getSkills($userId) {
+        $this->query("SELECT id, name, visible, skill_category, updated_at FROM Skills WHERE user_id='{$userId}'");
+        $response = $this->get();
+        return $response;
+    }
+
+    public function getSkillCategories($userId) {
+        $this->query("SELECT id, category, user_id FROM Skill_Categories WHERE user_id='{$userId}'");
+        $response = $this->get();
+        return $response;
+    }
+
+    // Profile Functions
+
+    public function addJob($data) {
+        $columns = array_keys($data);
+        $columns = implode(', ', $columns);
+
+        $values = array_values($data);
+        $values = "'".implode("', '", $values)."'";
+
+        $response = $this->query("INSERT INTO Jobs ({$columns}) VALUES ({$values})");
+
+        if(is_string($response) && !strpos($response, 'Error MYSQL: ')) {
+            return "BAD";
+        }
+        return 'OK';
+    }
+
+    public function addProject($data) {
+        $columns = array_keys($data);
+        $columns = implode(', ', $columns);
+
+        $values = array_values($data);
+        $values = "'".implode("', '", $values)."'";
+
+        $response = $this->query("INSERT INTO Projects ({$columns}) VALUES ({$values})");
+
+        if(is_string($response) && !strpos($response, 'Error MYSQL: ')) {
+            return "BAD";
+        }
+        return 'OK';
+    }
+
+    public function addSocialNetwork($data) {
+        $columns = array_keys($data);
+        $columns = implode(', ', $columns);
+
+        $values = array_values($data);
+        $values = "'".implode("', '", $values)."'";
+
+        $response = $this->query("INSERT INTO Social_Networks ({$columns}) VALUES ({$values})");
+
+        if(is_string($response) && !strpos($response, 'Error MYSQL: ')) {
+            return "BAD";
+        }
+        return 'OK';
+    }
+
+    public function addSkill($data) {
+        $columns = array_keys($data);
+        $columns = implode(', ', $columns);
+
+        $values = array_values($data);
+        $values = "'".implode("', '", $values)."'";
+
+        $response = $this->query("INSERT INTO Skills ({$columns}) VALUES ({$values})");
+
+        if(is_string($response) && !strpos($response, 'Error MYSQL: ')) {
+            return "BAD";
+        }
+        return 'OK';
+    }
+
+    public function addSkillCategory($data) {
+        $columns = array_keys($data);
+        $columns = implode(', ', $columns);
+
+        $values = array_values($data);
+        $values = "'".implode("', '", $values)."'";
+
+        $response = $this->query("INSERT INTO Skill_Categories ({$columns}) VALUES ({$values})");
+
+        if(is_string($response) && !strpos($response, 'Error MYSQL: ')) {
+            return "BAD";
+        }
+        return 'OK';
+    }
+
     
 }
 ?>

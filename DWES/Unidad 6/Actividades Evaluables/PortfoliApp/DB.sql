@@ -28,14 +28,14 @@ CREATE TABLE Users (
 
 CREATE TABLE Jobs (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    title VARCHAR(128),
-    description VARCHAR(256),
-    start_date DATE,
+    title VARCHAR(128) NOT NULL,
+    description VARCHAR(256) NOT NULL,
+    start_date DATE NOT NULL,
     finish_date DATE,
     achievements VARCHAR(512),
-    visible TINYINT,
-    created_at TIMESTAMP,
-    updated_at TIMESTAMP,
+    visible TINYINT NOT NULL,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP NOT NULL,
     user_id INT,
     INDEX(title),
     INDEX(user_id),
@@ -44,13 +44,13 @@ CREATE TABLE Jobs (
 
 CREATE TABLE Projects (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    title VARCHAR(128),
-    description VARCHAR(256),
+    title VARCHAR(128) NOT NULL,
+    description VARCHAR(256) NOT NULL,
     logo VARCHAR(128),
     technologies VARCHAR(256),
-    visible TINYINT,
-    created_at TIMESTAMP,
-    updated_at TIMESTAMP,
+    visible TINYINT NOT NULL,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP NOT NULL,
     user_id INT,
     INDEX(title),
     INDEX(user_id),
@@ -60,8 +60,9 @@ CREATE TABLE Projects (
 
 CREATE TABLE Social_Networks (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(64),
-    url VARCHAR(256),
+    name VARCHAR(64) NOT NULL,
+    url VARCHAR(256) NOT NULL,
+    visible TINYINT NOT NULL,
     created_at TIMESTAMP,
     updated_at TIMESTAMP,
     user_id INT,
@@ -72,18 +73,20 @@ CREATE TABLE Social_Networks (
 CREATE TABLE Skill_Categories (
     id INT PRIMARY KEY AUTO_INCREMENT,
     category VARCHAR(32),
-    INDEX(category)
+    user_id INT,
+    INDEX(category),
+    FOREIGN KEY (user_id) REFERENCES Users(id)
 );
 
 CREATE TABLE Skills (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    skills VARCHAR(256),
-    visible TINYINT,
-    created_at TIMESTAMP,
-    updated_at TIMESTAMP,
-    skill_category VARCHAR(32),
+    name VARCHAR(256) NOT NULL,
+    visible TINYINT NOT NULL,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP NOT NULL,
+    skill_category INT,
     user_id INT,
-    INDEX(skills),
-    FOREIGN KEY (skill_category) REFERENCES Skill_Categories(category),
+    INDEX(name),
+    FOREIGN KEY (skill_category) REFERENCES Skill_Categories(id),
     FOREIGN KEY (user_id) REFERENCES Users(id)
 );
