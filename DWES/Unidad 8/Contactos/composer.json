@@ -1,0 +1,19 @@
+{
+    "name": "alx/contactos",
+    "description": "Gestor de contactos",
+    "type": "project",
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Alx\\Contactos\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "AlxCorp",
+            "email": "alejandro@pfagot.com"
+        }
+    ]
+}
