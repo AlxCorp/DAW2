@@ -1,9 +1,9 @@
 <?php
-use Alx\Contactos\Controllers\AuthController;
+use App\Controllers\AuthController;
 require("../vendor/autoload.php");
 
-use Alx\Contactos\Controllers\ContactosController;
-use Alx\Contactos\Core\Router;
+use App\Controllers\contactosController;
+use App\Core\Router;
 use \Firebase\JWT\JWT;
 use \Firebase\JWT\Key;
 
