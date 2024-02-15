@@ -1,0 +1,170 @@
+* {
+  margin: 0 auto;
+}
+
+body {
+  color: white;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  max-width: 1200px;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+}
+body header {
+  border-radius: 5px;
+}
+body header nav {
+  border-radius: 5px;
+}
+body header nav ul {
+  font-size: 0;
+  padding: 0;
+}
+body header nav ul li {
+  background: rgba(70, 130, 180, 0.5);
+  display: inline-block;
+  font-size: 16px;
+  height: 50px;
+  line-height: 50px;
+  padding: 10px 0;
+  vertical-align: top;
+  width: 25%;
+}
+@media screen and (max-width: 800px) {
+  body header nav ul li {
+    width: 50%;
+  }
+}
+body header nav ul li img {
+  height: 50px;
+}
+@media screen and (max-width: 800px) {
+  body header nav ul li img {
+    height: 80%;
+  }
+}
+body header nav ul li a {
+  color: navy;
+  display: block;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+body header nav ul li a:hover {
+  color: white;
+}
+body header nav ul li:hover {
+  background: rgba(70, 130, 180, 0.7);
+  box-shadow: inset white 0px 8px 8px;
+}
+body #contenedor {
+  background: lightcyan;
+  display: inline-block;
+  max-width: 1200px;
+  text-align: center;
+}
+body #contenedor section, body #contenedor aside {
+  display: inline-block;
+  vertical-align: top;
+}
+body #contenedor section {
+  text-align: center;
+  width: 70%;
+}
+@media screen and (max-width: 550px) {
+  body #contenedor section {
+    width: 100%;
+  }
+}
+body #contenedor section article {
+  display: inline-block;
+  border: 2px solid navy;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px steelblue;
+  color: black;
+  font-size: 0.8em;
+  margin: 1%;
+  padding: 10px;
+  width: 150px;
+}
+body #contenedor section article img {
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  box-shadow: 8px 8px 10px steelblue;
+  height: 150px;
+  width: 150px;
+}
+body #contenedor section article:hover img {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+}
+body #contenedor aside {
+  border: 5px solid navy;
+  border-radius: 5px;
+  margin: 2%;
+  padding: 10px;
+  text-align: center;
+  width: 18%;
+}
+@media screen and (max-width: 550px) {
+  body #contenedor aside {
+    width: 60%;
+  }
+}
+body #contenedor aside a {
+  text-decoration: none;
+}
+body #contenedor aside .personales {
+  padding-bottom: 0.5em;
+}
+body #contenedor aside .personales h2 {
+  text-shadow: 2px 2px 10px white;
+}
+body #contenedor aside .Redes_sociales img {
+  height: 64px;
+  width: 64px;
+}
+body footer {
+  background: rgba(70, 130, 180, 0.5);
+  max-width: 1200px;
+}
+@media screen and (max-width: 440px) {
+  body footer {
+    display: none;
+  }
+}
+body footer ul {
+  font-size: 0;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+}
+body footer ul li {
+  display: inline-block;
+  font-size: 9px;
+  height: 25px;
+  line-height: 25px;
+  margin: 0 5%;
+  padding: 10px 0;
+  vertical-align: top;
+  width: 10%;
+}
+body footer ul li img {
+  height: 25px;
+}
+body footer ul li a {
+  color: navy;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+body footer ul li a:hover {
+  color: white;
+}/*# sourceMappingURL=style.css.map */
