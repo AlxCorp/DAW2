@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agrega un trabajo</title>
-    <link rel="stylesheet" href="/css/profileAdd.css">
+    <link rel="stylesheet" href="/css/formPage.css">
 </head>
 <body>
     <?php 
@@ -18,7 +18,10 @@
     <h1>Agrega un nuevo proyecto</h1>
     <main>
         <form action="" method="POST" enctype="multipart/form-data">
-            <input type="file" name="logo">
+            <div>
+                <label for="projectImg">Imagen del proyecto: </label>
+                <input type="file" name="logo" id="projectImg">
+            </div>
             <input type="text" name="title" placeholder="Título del proyecto" required>
             <textarea placeholder="Descripción del proyecto" name="description" required></textarea>
             <textarea placeholder="Tecnologías (Separadas por comas)" name="technologies"></textarea>

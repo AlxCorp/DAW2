@@ -8,6 +8,7 @@ class User {
     protected $db_name;
     protected $db_user;
     protected $db_password;
+    public $error;
 
     protected $connection;
     protected $query;
@@ -33,7 +34,7 @@ class User {
         try {
             $this->query = $this->connection->query($query);
         } catch (\mysqli_sql_exception $e) {
-            return 'Error MYSQL: '.$e;
+            $this->error = 'Error MYSQL: '.$e;
         }
 
         return $this;
@@ -255,6 +256,41 @@ class User {
         return 'OK';
     }
 
+    
+
+
+
+    public function getLastPortfolios() {
+        $realResponse = [];
+
+        $this->query("SELECT id, name, surname, photo, categoria_profesional FROM Users WHERE visible = 1 ORDER BY created_at LIMIT 6");
+        $response = $this->get();
+
+        foreach($response as $id) {
+            $tmpId = $id["id"];
+
+            $realResponse[$tmpId]["info"] = [
+                "name" => $id["name"], 
+                "surname" => $id["surname"], 
+                "photo" => $id["photo"], 
+                "categoria_profesional" => $id["categoria_profesional"]
+            ];
+
+            $this->query("SELECT title, start_date, finish_date FROM Jobs WHERE user_id = $tmpId AND visible = 1 ORDER BY start_date LIMIT 3");
+            $realResponse[$tmpId]["jobs"] = $this->get();
+
+            $this->query("SELECT logo, title, technologies FROM Projects WHERE user_id = $tmpId AND visible = 1 AND logo IS NOT NULL ORDER BY updated_at LIMIT 3");
+            $realResponse[$tmpId]["projects"] = $this->get();
+
+            $this->query("SELECT name FROM Skills WHERE user_id = $tmpId AND visible = 1 ORDER BY updated_at LIMIT 4");
+            $realResponse[$tmpId]["skills"] = $this->get();
+
+            $this->query("SELECT name, url FROM Social_Networks WHERE user_id = $tmpId AND visible = 1 ORDER BY updated_at LIMIT 3");
+            $realResponse[$tmpId]["social_networks"] = $this->get();
+        }
+
+        return $realResponse;
+    }
     
 }
 ?>

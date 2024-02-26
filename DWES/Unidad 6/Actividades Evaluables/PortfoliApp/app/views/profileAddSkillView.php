@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agrega una skill</title>
-    <link rel="stylesheet" href="/css/profileAdd.css">
+    <link rel="stylesheet" href="/css/formPage.css">
 </head>
 <body>
     <?php 
@@ -33,7 +33,7 @@
             </select>
             <input type="submit" value="Guardar">
         </form>
-        <a href="/profile/add/skillCategory"><button>Crear Categoría de skill</button></a>
+        <a href="/profile/add/skillCategory"><button class="addSkillCategoryBtt">Crear Categoría de skill</button></a>
     </main>
 </body>
 </html>

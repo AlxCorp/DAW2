@@ -4,9 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
+    <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/register.css">
 </head>
 <body>
+    <?php include_once('header.php') ?>
+    <?php if (isset($error)) {?>
+        <div class="header-alert red">
+            <p><?=$error?></p>
+        </div>
+    <?php } ?>
     <main>
         <h1>Registro</h1>
         <form action="" method="POST">

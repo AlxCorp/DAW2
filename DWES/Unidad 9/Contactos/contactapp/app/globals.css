@@ -1,0 +1,41 @@
+.App {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  background-color: gray;
+}
+
+.contact-list-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#contact-list-container header{
+  text-align: center;
+  padding: 20px 0;
+}
+
+
+.contact-list-container-header-h1{
+  display: inline;
+}
+
+#contact-list-container>ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#contact-list-container>ul>li {
+  width: 30%;
+}
+
+#contact-list-container>ul>li>p>img {
+  width: 40px;
+}
+
+.name-container {
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 0px;
+}

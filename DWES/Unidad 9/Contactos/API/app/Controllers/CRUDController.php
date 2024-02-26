@@ -19,9 +19,13 @@ class CRUDController extends Controller {
     }
 
     public function add() {
-        if ($_SESSION['loginId'] == 'guest') {
-            http_response_code(403);
-        }
+        //if ($_SESSION['loginId'] == 'guest') {
+        //    http_response_code(403);
+        //}
+
+        error_log(
+            implode("", $_POST)
+        );
 
         if (($_POST['name'] != "") && ($_POST['tel'] != "") && ($_POST['email'] != "")) {
             $data = [];
@@ -36,10 +40,10 @@ class CRUDController extends Controller {
     }
 
     public function update() {
-        if ($_SESSION['loginId'] == 'guest') {
-            http_response_code(403);
-            return;
-        }
+        // if ($_SESSION['loginId'] == 'guest') {
+        //     http_response_code(403);
+        //     return;
+        // }
 
         if (($_POST['id'] != "") && ($_POST['name'] != "") && ($_POST['tel'] != "") && ($_POST['email'] != "")) {
             $data = [];
@@ -53,10 +57,10 @@ class CRUDController extends Controller {
     }
 
     public function delete($id) {
-        if ($_SESSION['loginId'] == 'guest') {
-            http_response_code(403);
-            return;
-        }
+        // if ($_SESSION['loginId'] == 'guest') {
+        //     http_response_code(403);
+        //     return;
+        // }
         
         $this->contactModel->deleteContact($id);
         return;

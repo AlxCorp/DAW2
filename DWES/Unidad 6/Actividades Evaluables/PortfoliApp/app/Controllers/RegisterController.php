@@ -28,7 +28,7 @@ class RegisterController extends Controller{
             $surname = $_POST['surname'];
             $email = $_POST['email'];
             $password = $_POST['password'];
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo 'Error: '.$e->getMessage();
             exit(1);
         }
@@ -48,15 +48,18 @@ class RegisterController extends Controller{
 
         $userModel = new User();
 
-        try {
-            $userModel->register($data);
-        } catch (Exception $e) {
-            echo 'Error: '.  $e->getMessage();
-            exit(1);
+        $userModel->register($data);
+        if ($userModel->error) {
+            return $this->loadView('registerView', ["error" => "Este email ya está registrado, por favor, vuelve a intentarlo."]);
         }
 
         $emailSender = new EmailSender();
-        $emailSender->sendConfirmationMail($data['name'], $data['surname'], $data['email'], $data['token']);
+
+        try {
+            $emailSender->sendConfirmationMail($data['name'], $data['surname'], $data['email'], $data['token']);
+        } catch (\Symfony\Component\Mailer\Exception\TransportException $e) {
+            return $this->loadView('registerView', ["error" => "Ha ocurrido un error con el mail, por favor, vuelve a intentarlo."]);
+        } 
         
         return $this->loadView('registeredView', [
             'name' => $name, 

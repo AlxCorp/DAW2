@@ -6,6 +6,7 @@ use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mime\Email;
 
 class EmailSender {
+
     function __construct() {
         $this->transport = Transport::fromDsn($_ENV['SMTP_SERVER']);
         $this->transport->setUsername($_ENV['SMTP_USER']);

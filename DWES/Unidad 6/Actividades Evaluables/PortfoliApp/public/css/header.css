@@ -1,0 +1,20 @@
+header {
+    padding: 10px 6vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4070F4;
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+header nav ul a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+}
