@@ -51,3 +51,33 @@ input[type="submit"] {
     font-size: 20px;
     font-weight: bold;
 }
+
+.header-alert {
+    margin: 10px;
+    padding: 20px 60px;
+    border-radius: 20px;
+}
+
+.green-header-alert {
+    background-color: rgb(0, 222, 122);
+}
+
+.yellow-header-alert {
+    background-color: rgb(222, 222, 0);
+}
+
+.red-header-alert {
+    background-color: rgb(222, 0, 0);
+}
+
+.header-alert p {
+    font-size: large;
+    font-weight: bold;
+}
+
+.error-message {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+}

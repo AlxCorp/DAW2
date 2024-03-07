@@ -9,6 +9,11 @@
 </head>
 <body>
     <?php include_once('header.php') ?>
+    <?php if (isset($error)) {?>
+        <div class="header-alert <?= $errorColor ?>">
+            <p><?=$error?></p>
+        </div>
+    <?php } ?>
     <main>
         <h1>Login</h1>
         <form action="" method="POST">

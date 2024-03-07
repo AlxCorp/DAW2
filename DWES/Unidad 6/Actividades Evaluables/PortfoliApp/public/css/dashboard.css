@@ -15,12 +15,13 @@ header {
 }
 
 header img {
-    width: 50px;
+    width: 80px;
 }
 
 header h1 {
     margin-left: 20px;
     display: inline;
+    color: white;
 }
 
 nav ul {
@@ -68,9 +69,19 @@ main {
     background-color: #26383F;
 }
 
+.job {
+    display: flex;
+    align-items: center;
+}
+
 .proyectos {
     color: #FFFFFF;
     background-color: #FF9F1C;
+}
+
+.project {
+    display: flex;
+    align-items: center;
 }
 
 .redes-sociales {
@@ -78,9 +89,23 @@ main {
     background-color: #2DC4B5;
 }
 
+.socialNetworkLogo {
+    width: 50px;
+}
+
+.socialNetwork {
+    display: flex;
+    align-items: center;
+}
+
 .skills {
     color: #FFFFFF;
     background-color: #E0142D;
+}
+
+.skill {
+    display: flex;
+    align-items: center;
 }
 
 .box button {

@@ -9,7 +9,7 @@
 <body>
     <?php 
     if ($alert) {
-        $error ? 'red' : 'green';
+        $error = $error ? 'red' : 'green';
         echo('<div class="header-alert '.$error.'-header-alert">');
             echo('<p>'.$message.'</p>');
         echo('</div>');

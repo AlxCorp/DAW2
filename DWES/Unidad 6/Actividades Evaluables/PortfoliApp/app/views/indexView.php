@@ -6,11 +6,14 @@
     <title>PortfoliApp</title>
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="css/index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
     <?php include_once('header.php') ?>
     <div class="searchDiv">
-        <input type="text" name="search" placeholder="Buscar Portfolios...">
+        <input type="text" name="search" placeholder="Buscar Portfolios..." id="searchInput">
+        <div class="resultados">
+        </div>
     </div>
     <hr>
     <main>
@@ -72,5 +75,25 @@
             <?php } ?>
         </section>
     </main>
+    <script>
+        $(document).ready(() => {
+            $('input[name="search"]').on('keyup', (e) => {
+                var busqueda = e.target.value;
+
+                if (busqueda == "") {
+                    $('.resultados').html("");
+                } else {
+                    $.ajax({
+                    url: 'busqueda',
+                    type: 'POST',
+                    data: {search: busqueda},
+                    success: function(resp) {
+                        $('.resultados').html(resp);
+                    }
+                });
+                }
+            });
+        });
+    </script>
 </body>
 </html>

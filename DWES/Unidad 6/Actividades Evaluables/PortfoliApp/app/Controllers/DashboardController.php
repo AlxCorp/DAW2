@@ -9,23 +9,25 @@ class DashboardController extends Controller{
 
         if (isset($_SESSION['userId'])) {
             $userId = $_SESSION['userId'];
-
+            
             $userModel = new User();
-            $userName = $userModel->getName($userId);
-            $profileImg = $userModel->getProfileImg($userId);
-            $jobs = $this->getJobs($userModel, $userId);
-            $projects = $this->getProjects($userModel, $userId);
-            $socialNetworks = $this->getSocialNetworks($userModel, $userId);
-            $skills = $this->getSkills($userModel, $userId);
-
-            return $this->loadView('dashboardView', [
-                'userName' => $userName,
-                'profileImg' => $profileImg,
-                'jobs' => $jobs,
-                'projects' => $projects,
-                'socialNetworks' => $socialNetworks,
-                'skills' => $skills,
-            ]);
+            if ($userModel->isVisible($userId) == 1) {
+                $userName = $userModel->getName($userId);
+                $profileImg = $userModel->getProfileImg($userId);
+                $jobs = $this->getJobs($userModel, $userId);
+                $projects = $this->getProjects($userModel, $userId);
+                $socialNetworks = $this->getSocialNetworks($userModel, $userId);
+                $skills = $this->getSkills($userModel, $userId);
+    
+                return $this->loadView('dashboardView', [
+                    'userName' => $userName,
+                    'profileImg' => $profileImg,
+                    'jobs' => $jobs,
+                    'projects' => $projects,
+                    'socialNetworks' => $socialNetworks,
+                    'skills' => $skills,
+                ]);
+            }
         }
         return header('Location: http://portfoliapp.com/login');
     }

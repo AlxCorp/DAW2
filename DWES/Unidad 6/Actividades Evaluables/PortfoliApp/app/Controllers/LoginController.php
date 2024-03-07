@@ -42,17 +42,21 @@ class LoginController extends Controller{
         
         if ($isValid) {
             $userId = $isValid;
+            if ($userModel->isActive($userId) == 1) {
+                $passwordIsValid = $this->validatePassword($userModel, $userId, $password);
 
-            $passwordIsValid = $this->validatePassword($userModel, $userId, $password);
-
-            if ($passwordIsValid) {
-                session_start();
-                $_SESSION['userId'] = $userId;
-            }
-
+                if ($passwordIsValid) {
+                    session_start();
+                    $_SESSION['userId'] = $userId;
+                } else {
+                    return $this->loadView('loginView', ["error" => "Contraseña incorrecta", "errorColor"=>"red"]);
+                 }
+            } else {
+                return $this->loadView('loginView', ["error" => "Debes activar tu cuenta, por favor, revisa tu correo.", "errorColor"=>"yellow"]);
+              }
         } else {
-            return header('Location: http://portfoliapp.com/login');
-        }
+            return $this->loadView('loginView', ["error" => "Usuario incorrecto", "errorColor"=>"red"]);
+          }
 
         return header('Location: http://portfoliapp.com/login');
     }
@@ -93,7 +97,7 @@ class LoginController extends Controller{
         $userModel->insertSummary($userId, $summary);
 
         // Make Visible
-        //$userModel->makeProfileVisible($userId);
+        $userModel->makeProfileVisible($userId);
 
         // Update Edit Date
         $editDate = date('Y-m-d H:i:s');

@@ -1,0 +1,351 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    font-size: 12px;
+    background-color: var(--primaryColor);
+}
+
+/* -----HEADER----- */
+
+@keyframes flipi {
+    0% {
+      transform: rotateY(360deg);
+    }
+    100% {
+      transform: rotateY(0deg);
+    }
+}
+
+.main-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-header video {
+    height: 100vh;
+    width: 90vw;
+    object-fit: cover;
+
+    animation: 3s linear 0s 1 flipi;
+}
+
+.main-header-content {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes fuaaaaa {
+    0% {
+      opacity: 100;
+      left: -1000px;
+    }
+    20% {
+        left: -1000px;
+      }
+    100% {
+      left: 2000px;
+    }
+}
+
+.kamehameha {
+    opacity: 0;
+    position: absolute;
+    animation: 10s linear fuaaaaa;
+}
+
+@keyframes medesaparesco {
+    0% {
+      opacity: 0%;
+    }
+    80% {
+        opacity: 0%;
+    }
+    100% {
+      opacity: 100%;
+    }
+}
+
+.main-header-content h1 {
+    color: var(--primaryColor);
+    font-weight: 600;
+    font-size: 28px;
+    animation: 4s linear 0s 1 medesaparesco;
+}
+
+.social-nav ul{
+    list-style: none;
+
+    width: 50vw;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.social-nav i {
+    font-size: 32px;
+    color: var(--secondaryColor);
+}
+
+/* -----MAIN----- */
+
+main {
+    width: 90vw;
+    margin: 2vh auto 4vh;
+    background-image: url("../img/fondo_Goku.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center top;
+    background-attachment: fixed;
+}
+
+article {
+    border-radius: 5px;
+}
+
+    /* -----HEADER----- */
+
+.content-header {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.content-header ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 10px;
+}
+
+.content-header-button {
+    width: 100%;
+    padding: 5px 0;
+}
+
+.content-header-button:first-child {
+    background-color: white;
+    padding-top: 5px;
+}
+
+.content-header-button:last-child {
+    padding-bottom: 10px;
+}
+
+.content-header-button:first-child span, .content-header-button:first-child a {
+    color: var(--secondaryColor);
+}
+
+.content-header-button span {
+    color: var(--primaryColor);
+}
+
+.content-header-button > a {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+
+    text-decoration: none;
+
+    color: var(--primaryColor);
+}
+
+    /* -----POSTS----- */
+
+.posts {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.post {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    text-align: center;
+
+    transition: 1s linear;
+    transform-style: preserve-3d;
+    transform: rotateY(360deg);
+
+}
+
+.post:hover {
+}
+
+.post:first-child {
+    margin-top: 30px;
+}
+
+.post-title{
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--primaryColor);
+    text-align: start;
+}
+
+.post-meta{
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--kaio_dark);
+    display: none;
+}
+
+.post-img{
+    width: 50%;
+    margin: 10px 0;
+}
+
+.post-description{
+    font-size: 12px;
+    text-align: justify;
+}
+
+    /* -----ASIDE----- */
+
+.aside-article {
+    display: none;
+    background-color: rgba(255, 255, 255, 0.8);
+
+    padding: 30px;
+}
+
+.aside-article:first-child {
+    margin-top: 30px;
+    display: inherit;
+
+    display: grid;
+    gap: 15px;
+}
+
+.aside-article h4 {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--kaio_dark);
+}
+
+.aside-article p {
+    font-weight: 400;
+}
+
+/* -----FOOTER----- */
+
+footer {
+    background-color: white;
+
+    width: 90vw;
+    margin: 0 auto 20px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 40px;
+}
+
+footer img {
+    width: 5vh;
+}
+
+
+/* -----MEDIAS----- */
+
+@media only screen and (width > 830px) {    
+    .content-header ul {
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+    }
+
+    .content-header-button:first {
+        padding: 0px;
+    }
+
+    .content-header-button {
+        width: 15%;
+        height: 100%;
+    }
+
+    .content-header-button:first-child {
+        background-color: white;
+    }
+
+    .to-split {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .posts {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    .post {
+        width: 40%;
+    }
+
+    .post:first-child {
+        margin-top: 0;
+    }
+
+    .post-meta {
+        display: inherit;
+        text-align: start;
+        margin: 10px 0;
+    }
+
+    footer {
+        padding: 20px 0;
+        gap: 600px;
+    }
+
+}
+  
+@media only screen and (width > 1200px) {   
+    .main-header-content h1 {
+        font-size: 40px;
+    }
+
+    .social-nav ul{
+        width: 30vw;
+    }
+
+    .social-nav i {
+        font-size: 40px;
+    }
+    
+    .to-split {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        gap: 40px;
+    }
+
+    .posts {
+        gap: 0;
+        row-gap: 40px;
+    }
+
+    .post {
+        width: 25%;
+    }
+
+    .aside-article {
+        display: inherit;
+        margin-bottom: 20px;
+    }
+
+    footer {
+        gap: 900px;
+    }
+}

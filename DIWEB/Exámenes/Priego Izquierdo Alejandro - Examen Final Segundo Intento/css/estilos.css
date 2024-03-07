@@ -1,0 +1,27 @@
+/****	Paleta de colores ****/
+
+:root{
+	--super: #fee03d;
+	--super_light: #fffcd8; 
+	--super_dark: #c97b13;
+	--kaio: #d23048;
+	--kaio_light: #e384ac;
+	--kaio_dark: #ce2045; 
+	--god: #d40360;
+	--god_light: #fe83ad;
+	--god_dark: #9d0045; 
+	--blue: #5bced7;
+	--blue_light: #d8ecec;
+	--blue_dark: #2e8ca4;
+	--ultra: #c7cad4;
+	--ultra_light: #f2f2f7;
+	--ultra_dark: #393e66;
+
+}
+
+:root{
+	--primaryColor:var(--ultra_dark);
+	--secondaryColor: var(--kaio);
+	--primaryTextColor: #000000;
+	--secondaryTextColor: #FFFFFF;
+}

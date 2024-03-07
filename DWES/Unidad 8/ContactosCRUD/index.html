@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+        }
+
+        .section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+            font-size: 24px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .section:nth-child(odd) {
+            background-color: #3498db; /* Color del lado izquierdo */
+        }
+
+        .section:nth-child(even) {
+            background-color: #e74c3c; /* Color del lado derecho */
+        }
+
+        .section:hover {
+            background-color: #222; /* Color de fondo al pasar el cursor */
+        }
+
+        /* Estilo de los enlaces */
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <a href="https://github.com/AlxCorp/DAW2/tree/main/DWES/Unidad%208/ContactosCRUD">
+            Github
+        </a>
+    </div>
+    <div class="section">
+        <a href="./public/index.php">
+            Ejercicio
+        </a>
+    </div>
+</body>
+</html>

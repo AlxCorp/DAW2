@@ -7,7 +7,7 @@
 ?>
 
 <header>
-    <a href=""><img src="img/logo/png/portfoliapp-high-resolution-logo-black-transparent-letters.png" height="50px"></a>
+    <a href="/"><img src="/img/logo/png/portfoliapp-high-resolution-logo-black-transparent-letters.png" height="50px"></a>
     <nav>
         <ul>
             <?php 

@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Completa tu Perfil</title>
+    <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/validate.css">
-    <link rel="stylesheet" href="/css/firstTime.css">
+    <!-- <link rel="stylesheet" href="/css/firstTime.css"> -->
 </head>
 <body>
+    <?php include_once('header.php') ?>
     <div class="header-alert green-header-alert">
         <p>Tu perfil se ha validado correctamente!</p>
     </div>

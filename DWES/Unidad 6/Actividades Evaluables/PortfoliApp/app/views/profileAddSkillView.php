@@ -8,13 +8,11 @@
 </head>
 <body>
     <?php 
-    if ($alertColor) {
-        if ($alertColor) {
+        if (isset($alertColor)) {
             echo('<div class="header-alert '.$alertColor.'-header-alert">');
                 echo('<p>'.$message.'</p>');
             echo('</div>');
         }
-    }
     ?>
     <h1>Agrega una nueva skill</h1>
     <main>

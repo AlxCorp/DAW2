@@ -118,6 +118,18 @@ class User {
 
     // First Time Form Functions
 
+    public function isVisible($userId) {
+        $this->query("SELECT visible FROM Users WHERE id='{$userId}'");
+        $response = $this->first();
+        return $response['visible'];
+    }
+
+    public function isActive($userId) {
+        $this->query("SELECT active_account FROM Users WHERE id='{$userId}'");
+        $response = $this->first();
+        return $response['active_account'];
+    }
+
     public function getMailFromId($userId) {
         $this->query("SELECT email FROM Users WHERE id='{$userId}'");
         $response = $this->first();
@@ -162,7 +174,7 @@ class User {
     }
 
     public function getSocialNetworks($userId) {
-        $this->query("SELECT id, name, url, updated_at FROM Social_Networks WHERE user_id='{$userId}'");
+        $this->query("SELECT id, name, url, updated_at, visible FROM Social_Networks WHERE user_id='{$userId}'");
         $response = $this->get();
         return $response;
     }
@@ -196,6 +208,25 @@ class User {
         return 'OK';
     }
 
+    public function editJob($jobId, $data) {
+        $values = "
+            title='{$data['title']}',
+            description='{$data['description']}',
+            start_date='{$data['start_date']}',
+            finish_date='{$data['finish_date']}',
+            achievements='{$data['achievements']}',
+            visible={$data['visible']},
+            updated_at='{$data['updated_at']}'
+        ";
+
+        $response = $this->query("UPDATE Jobs SET {$values} WHERE id={$jobId}");
+
+        if(is_string($response) && !strpos($response, 'Error MYSQL: ')) {
+            return "BAD";
+        }
+        return 'OK';
+    }
+
     public function addProject($data) {
         $columns = array_keys($data);
         $columns = implode(', ', $columns);
@@ -204,6 +235,23 @@ class User {
         $values = "'".implode("', '", $values)."'";
 
         $response = $this->query("INSERT INTO Projects ({$columns}) VALUES ({$values})");
+
+        if(is_string($response) && !strpos($response, 'Error MYSQL: ')) {
+            return "BAD";
+        }
+        return 'OK';
+    }
+
+    public function editProject($projectId, $data) {
+        $values = "
+            title='{$data['title']}',
+            description='{$data['description']}',
+            technologies='{$data['technologies']}',
+            visible={$data['visible']},
+            updated_at='{$data['updated_at']}'
+        ";
+
+        $response = $this->query("UPDATE Projects SET {$values} WHERE id={$projectId}");
 
         if(is_string($response) && !strpos($response, 'Error MYSQL: ')) {
             return "BAD";
@@ -291,6 +339,125 @@ class User {
 
         return $realResponse;
     }
+
+    public function searchPortfolios($input) {
+        $realResponse = [];
+        $totalIds = [];
+
+        $this->query("SELECT id FROM Users WHERE visible = 1 AND (name LIKE '%$input%' OR surname LIKE '%$input%') ORDER BY created_at LIMIT 6");
+        $return = $this->get();
+        foreach($return as $id) {
+            array_push($totalIds, $id['id']);
+        }
+
+        $this->query("SELECT user_id FROM Jobs WHERE visible = 1 AND (title LIKE '%$input%') ORDER BY updated_at LIMIT 6");
+        $return = $this->get();
+        foreach($return as $id) {
+            array_push($totalIds, $id['user_id']);
+        }
+
+        $this->query("SELECT user_id FROM Projects WHERE visible = 1 AND (title LIKE '%$input%' OR technologies LIKE '%$input%') ORDER BY updated_at LIMIT 6");
+        $return = $this->get();
+        foreach($return as $id) {
+            array_push($totalIds, $id['user_id']);
+        }
+
+        $this->query("SELECT user_id FROM Skills WHERE visible = 1 AND (name LIKE '%$input%') ORDER BY updated_at LIMIT 6");
+        $return = $this->get();
+        foreach($return as $id) {
+            array_push($totalIds, $id['user_id']);
+        }
+
+        $totalIds = array_unique($totalIds);
+
+        foreach($totalIds as $id) {
+            $this->query("SELECT id, name, surname, photo, categoria_profesional FROM Users WHERE id = $id");
+            $response = $this->get();
+
+            foreach($response as $id) {
+                $tmpId = $id["id"];
+
+                $realResponse[$tmpId]["info"] = [
+                    "name" => $id["name"], 
+                    "surname" => $id["surname"], 
+                    "photo" => $id["photo"], 
+                    "categoria_profesional" => $id["categoria_profesional"]
+                ];
+
+                $this->query("SELECT title, start_date, finish_date FROM Jobs WHERE user_id = $tmpId AND visible = 1 ORDER BY start_date LIMIT 3");
+                $realResponse[$tmpId]["jobs"] = $this->get();
+
+                $this->query("SELECT logo, title, technologies FROM Projects WHERE user_id = $tmpId AND visible = 1 AND logo IS NOT NULL ORDER BY updated_at LIMIT 3");
+                $realResponse[$tmpId]["projects"] = $this->get();
+
+                $this->query("SELECT name FROM Skills WHERE user_id = $tmpId AND visible = 1 ORDER BY updated_at LIMIT 4");
+                $realResponse[$tmpId]["skills"] = $this->get();
+
+                $this->query("SELECT name, url FROM Social_Networks WHERE user_id = $tmpId AND visible = 1 ORDER BY updated_at LIMIT 3");
+                $realResponse[$tmpId]["social_networks"] = $this->get();
+            }
+        }
+
+        return $realResponse;        
+    }
+
+
+
+    public function getJobVisibility($jobId) {
+        $this->query("SELECT visible FROM Jobs WHERE id='{$jobId}'");
+        $response = $this->first();
+        return $response["visible"];
+    }
+
+    public function hideJob($jobId) {
+        $this->query("UPDATE Jobs SET visible=0 WHERE id={$jobId}");
+        return "OK"; 
+    }
+
+    public function showJob($jobId) {
+        $this->query("UPDATE Jobs SET visible=1 WHERE id={$jobId}");
+        return "OK"; 
+    }
+
+    public function eraseJob($jobId) {
+        $this->query("DELETE FROM Jobs WHERE id={$jobId}");
+        return "OK"; 
+    }
+
+    public function getJob($jobId) {
+        $this->query("SELECT id, title, description, start_date, finish_date, achievements, visible FROM Jobs WHERE id='{$jobId}'");
+        $response = $this->first();
+        return $response;
+    }
     
+
+
+    public function getProjectVisibility($projectId) {
+        $this->query("SELECT visible FROM Jobs WHERE id='{$projectId}'");
+        $response = $this->first();
+        return $response["visible"];
+    }
+
+    public function hideProject($projectId) {
+        $this->query("UPDATE Projects SET visible=0 WHERE id={$projectId}");
+        return "OK"; 
+    }
+
+    public function showProject($projectId) {
+        $this->query("UPDATE Projects SET visible=1 WHERE id={$projectId}");
+        return "OK"; 
+    }
+
+    public function eraseProject($projectId) {
+        $this->query("DELETE FROM Projects WHERE id={$projectId}");
+        return "OK"; 
+    }
+
+    public function getProject($projectId) {
+        $this->query("SELECT id, title, description, logo, technologies, visible FROM Projects WHERE id='{$projectId}'");
+        $response = $this->first();
+        return $response;
+    }
+
 }
 ?>

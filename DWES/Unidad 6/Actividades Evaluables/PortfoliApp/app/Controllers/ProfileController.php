@@ -4,6 +4,7 @@ namespace Alx\Portfoliapp\Controllers;
 use Alx\Portfoliapp\Models\User;
 
 class ProfileController extends Controller{
+    private $userModel;
     function __construct() {
         session_start();
         if (!isset($_SESSION['userId'])) {
@@ -137,7 +138,6 @@ class ProfileController extends Controller{
 
         if ($skillCategoryExist) {
             return $this->loadView('profileAddSkillView', [
-                'alert' => false,
                 'skillCategories' => $skillCategoryExist
             ]);
         } else {
@@ -252,6 +252,90 @@ class ProfileController extends Controller{
         // imagedestroy($imagenCuadrada);
         
         return $imgName;
+    }
+
+
+    public function visibleJob($jobId) {
+        $isVisible = $this->userModel->getJobVisibility($jobId);
+        if ($isVisible == "1") {
+            $this->userModel->hideJob($jobId);
+        } else {
+            $this->userModel->showJob($jobId);
+        }
+        return header('Location: http://portfoliapp.com/dashboard');
+    }
+
+    public function eraseJob($jobId) {
+        $this->userModel->eraseJob($jobId);
+        return header('Location: http://portfoliapp.com/dashboard');
+    }
+
+    public function editJob($jobId) {
+        $job = $this->userModel->getJob($jobId);
+        return $this->loadView('profileEditJobView', [
+            'jobTitle'=>$job['title'],
+            'jobDescription'=>$job['description'],
+            'jobStartDate'=>$job['start_date'],
+            'jobFinishDate'=>$job['finish_date'],
+            'jobAchievements'=>$job['achievements'],
+            'jobVisible'=>$job['visible'],
+            ]);
+    }
+
+    public function editJobProcess($jobId) {
+        $data = [];
+        $data['title'] = $_POST['title'];
+        $data['description'] = $_POST['summary'];
+        $data['start_date'] = $_POST['start_date'];
+        $data['visible'] = $_POST['visible'];
+
+        ($_POST['finish_date'] != "") ? ($data['finish_date'] = $_POST['finish_date']) : '';
+        ($_POST['achievements'] != "") ? ($data['achievements'] = $_POST['achievements']) : '';
+
+        $data['updated_at'] = date('Y-m-d H:i:s');
+
+        $this->userModel->editJob($jobId, $data);
+        return header('Location: http://portfoliapp.com/dashboard');
+    }
+
+
+    public function visibleProject($projectId) {
+        $isVisible = $this->userModel->getProjectVisibility($projectId);
+        if ($isVisible == "1") {
+            $this->userModel->hideProject($projectId);
+        } else {
+            $this->userModel->showProject($projectId);
+        }
+        return header('Location: http://portfoliapp.com/dashboard');
+    }
+
+    public function eraseProject($projectId) {
+        $this->userModel->eraseProject($projectId);
+        return header('Location: http://portfoliapp.com/dashboard');
+    }
+
+    public function editProject($projectId) {
+        $project = $this->userModel->getProject($projectId);
+        return $this->loadView('profileEditProjectView', [
+            'projectTitle'=>$project['title'],
+            'projectDescription'=>$project['description'],
+            'projectTechnologies'=>$project['technologies'],
+            'projectVisible'=>$project['visible'],
+            ]);
+    }
+
+    public function editProjectProcess($projectId) {
+        $data = [];
+        $data['title'] = $_POST['title'];
+        $data['description'] = $_POST['description'];
+        $data['visible'] = $_POST['visible'];
+
+        ($_POST['technologies'] != "") ? ($data['technologies'] = $_POST['technologies']) : '';
+
+        $data['updated_at'] = date('Y-m-d H:i:s');
+
+        $this->userModel->editProject($projectId, $data);
+        return header('Location: http://portfoliapp.com/dashboard');
     }
 }
 ?>
