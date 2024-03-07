@@ -274,6 +274,22 @@ class User {
         return 'OK';
     }
 
+    public function editSocialNetwork($socialNetworkId, $data) {
+        $values = "
+            name='{$data['name']}',
+            url='{$data['url']}',
+            visible={$data['visible']},
+            updated_at='{$data['updated_at']}'
+        ";
+
+        $response = $this->query("UPDATE Social_Networks SET {$values} WHERE id={$socialNetworkId}");
+
+        if(is_string($response) && !strpos($response, 'Error MYSQL: ')) {
+            return "BAD";
+        }
+        return 'OK';
+    }
+
     public function addSkill($data) {
         $columns = array_keys($data);
         $columns = implode(', ', $columns);
@@ -282,6 +298,21 @@ class User {
         $values = "'".implode("', '", $values)."'";
 
         $response = $this->query("INSERT INTO Skills ({$columns}) VALUES ({$values})");
+
+        if(is_string($response) && !strpos($response, 'Error MYSQL: ')) {
+            return "BAD";
+        }
+        return 'OK';
+    }
+
+    public function editSkill($skillId, $data) {
+        $values = "
+            name='{$data['name']}',
+            visible={$data['visible']},
+            updated_at='{$data['updated_at']}'
+        ";
+
+        $response = $this->query("UPDATE Skills SET {$values} WHERE id={$skillId}");
 
         if(is_string($response) && !strpos($response, 'Error MYSQL: ')) {
             return "BAD";
@@ -433,7 +464,7 @@ class User {
 
 
     public function getProjectVisibility($projectId) {
-        $this->query("SELECT visible FROM Jobs WHERE id='{$projectId}'");
+        $this->query("SELECT visible FROM Projects WHERE id='{$projectId}'");
         $response = $this->first();
         return $response["visible"];
     }
@@ -459,5 +490,62 @@ class User {
         return $response;
     }
 
+
+
+    public function getSocialNetworkVisibility($socialNetworkId) {
+        $this->query("SELECT visible FROM Social_Networks WHERE id='{$socialNetworkId}'");
+        $response = $this->first();
+        return $response["visible"];
+    }
+
+    public function hideSocialNetwork($socialNetworkId) {
+        $this->query("UPDATE Social_Networks SET visible=0 WHERE id={$socialNetworkId}");
+        return "OK"; 
+    }
+
+    public function showSocialNetwork($socialNetworkId) {
+        $this->query("UPDATE Social_Networks SET visible=1 WHERE id={$socialNetworkId}");
+        return "OK"; 
+    }
+
+    public function eraseSocialNetwork($socialNetworkId) {
+        $this->query("DELETE FROM Social_Networks WHERE id={$socialNetworkId}");
+        return "OK"; 
+    }
+
+    public function getSocialNetwork($socialNetworkId) {
+        $this->query("SELECT id, name, url, visible FROM Social_Networks WHERE id='{$socialNetworkId}'");
+        $response = $this->first();
+        return $response;
+    }
+
+
+
+    public function getSkillVisibility($skillId) {
+        $this->query("SELECT visible FROM Skills WHERE id='{$skillId}'");
+        $response = $this->first();
+        return $response["visible"];
+    }
+
+    public function hideSkill($skillId) {
+        $this->query("UPDATE Skills SET visible=0 WHERE id={$skillId}");
+        return "OK"; 
+    }
+
+    public function showSkill($skillId) {
+        $this->query("UPDATE Skills SET visible=1 WHERE id={$skillId}");
+        return "OK"; 
+    }
+
+    public function eraseSkill($skillId) {
+        $this->query("DELETE FROM Skills WHERE id={$skillId}");
+        return "OK"; 
+    }
+
+    public function getSkill($skillId) {
+        $this->query("SELECT id, name, visible FROM Skills WHERE id='{$skillId}'");
+        $response = $this->first();
+        return $response;
+    }
 }
 ?>

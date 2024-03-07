@@ -98,19 +98,24 @@ Router::get('/profile/add/socialNetwork', [ProfileController::class, 'addSocialN
 
 Router::post('/profile/add/socialNetwork', [ProfileController::class, 'addSocialNetworkProcess']);
 
-Router::post('/profile/visible/job:slug', function ($socialNetworkId){
+Router::get('/profile/visible/socialNetwork/:slug', function ($socialNetworkId){
     $ProfileController = new ProfileController();
-    return $ProfileController->validateView($socialNetworkId);
+    return $ProfileController->visibleSocialNetwork($socialNetworkId);
 });
 
-Router::post('/profile/edit/job:slug', function ($socialNetworkId){
+Router::get('/profile/edit/socialNetwork/:slug', function ($socialNetworkId){
     $ProfileController = new ProfileController();
-    return $ProfileController->validateView($socialNetworkId);
+    return $ProfileController->editSocialNetwork($socialNetworkId);
 });
 
-Router::post('/profile/add/job:slug', function ($socialNetworkId){
+Router::post('/profile/edit/socialNetwork/:slug', function ($socialNetworkId){
     $ProfileController = new ProfileController();
-    return $ProfileController->validateView($socialNetworkId);
+    return $ProfileController->editSocialNetworkProcess($socialNetworkId);
+});
+
+Router::get('/profile/erase/socialNetwork/:slug', function ($socialNetworkId){
+    $ProfileController = new ProfileController();
+    return $ProfileController->eraseSocialNetwork($socialNetworkId);
 });
 
 
@@ -119,41 +124,26 @@ Router::get('/profile/add/skill', [ProfileController::class, 'addSkillView']);
 
 Router::post('/profile/add/skill', [ProfileController::class, 'addSkillProcess']);
 
-Router::post('/profile/visible/job:slug', function ($skillId){
+Router::get('/profile/visible/skill/:slug', function ($skillId){
     $ProfileController = new ProfileController();
-    return $ProfileController->validateView($skillId);
+    return $ProfileController->visibleSkill($skillId);
 });
 
-Router::post('/profile/edit/job:slug', function ($skillId){
+Router::get('/profile/edit/skill/:slug', function ($skillId){
     $ProfileController = new ProfileController();
-    return $ProfileController->validateView($skillId);
+    return $ProfileController->editSkill($skillId);
 });
 
-Router::post('/profile/add/job:slug', function ($skillId){
+Router::post('/profile/edit/skill/:slug', function ($skillId){
     $ProfileController = new ProfileController();
-    return $ProfileController->validateView($skillId);
+    return $ProfileController->editSkillProcess($skillId);
 });
 
-
-
-Router::get('/profile/add/skillCategory', [ProfileController::class, 'addSkillCategoryView']);
-
-Router::post('/profile/add/skillCategory', [ProfileController::class, 'addSkillCategoryProcess']);
-
-Router::post('/profile/visible/job:slug', function ($skillCategoryId){
+Router::get('/profile/erase/skill/:slug', function ($skillId){
     $ProfileController = new ProfileController();
-    return $ProfileController->validateView($skillCategoryId);
+    return $ProfileController->eraseSkill($skillId);
 });
 
-Router::post('/profile/edit/job:slug', function ($skillCategoryId){
-    $ProfileController = new ProfileController();
-    return $ProfileController->validateView($skillCategoryId);
-});
-
-Router::post('/profile/add/job:slug', function ($skillCategoryId){
-    $ProfileController = new ProfileController();
-    return $ProfileController->validateView($skillCategoryId);
-});
 
 
 

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agrega una skill</title>
+    <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/formPage.css">
 </head>
 <body>
@@ -14,6 +15,7 @@
             echo('</div>');
         }
     ?>
+    <?php include_once('header.php') ?>
     <h1>Agrega una nueva skill</h1>
     <main>
         <form action="" method="POST">

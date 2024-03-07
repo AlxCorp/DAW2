@@ -299,6 +299,7 @@ class ProfileController extends Controller{
     }
 
 
+
     public function visibleProject($projectId) {
         $isVisible = $this->userModel->getProjectVisibility($projectId);
         if ($isVisible == "1") {
@@ -337,5 +338,80 @@ class ProfileController extends Controller{
         $this->userModel->editProject($projectId, $data);
         return header('Location: http://portfoliapp.com/dashboard');
     }
+
+
+
+
+    public function visibleSocialNetwork($socialNetworkId) {
+        $isVisible = $this->userModel->getSocialNetworkVisibility($socialNetworkId);
+        if ($isVisible == "1") {
+            $this->userModel->hideSocialNetwork($socialNetworkId);
+        } else {
+            $this->userModel->showSocialNetwork($socialNetworkId);
+        }
+        return header('Location: http://portfoliapp.com/dashboard');
+    }
+
+    public function eraseSocialNetwork($socialNetworkId) {
+        $this->userModel->eraseSocialNetwork($socialNetworkId);
+        return header('Location: http://portfoliapp.com/dashboard');
+    }
+
+    public function editSocialNetwork($socialNetworkId) {
+        $socialNetwork = $this->userModel->getSocialNetwork($socialNetworkId);
+        return $this->loadView('profileEditSocialNetworkView', [
+            'socialNetworkName'=>$socialNetwork['name'],
+            'socialNetworkUrl'=>$socialNetwork['url'],
+            'socialNetworkVisible'=>$socialNetwork['visible'],
+            ]);
+    }
+
+    public function editSocialNetworkProcess($socialNetworkId) {
+        $data = [];
+        $data['name'] = $_POST['name'];
+        $data['url'] = $_POST['url'];
+        $data['visible'] = $_POST['visible'];
+        $data['updated_at'] = date('Y-m-d H:i:s');
+
+        $this->userModel->editsocialNetwork($socialNetworkId, $data);
+        return header('Location: http://portfoliapp.com/dashboard');
+    }
+
+
+
+
+    public function visibleSkill($skillId) {
+        $isVisible = $this->userModel->getSkillVisibility($skillId);
+        if ($isVisible == "1") {
+            $this->userModel->hideSkill($skillId);
+        } else {
+            $this->userModel->showSkill($skillId);
+        }
+        return header('Location: http://portfoliapp.com/dashboard');
+    }
+
+    public function eraseSkill($skillId) {
+        $this->userModel->eraseSkill($skillId);
+        return header('Location: http://portfoliapp.com/dashboard');
+    }
+
+    public function editSkill($skillId) {
+        $skill = $this->userModel->getSkill($skillId);
+        return $this->loadView('profileEditSkillView', [
+            'skillName'=>$skill['name'],
+            'skillVisible'=>$skill['visible'],
+            ]);
+    }
+
+    public function editSkillProcess($skillId) {
+        $data = [];
+        $data['name'] = $_POST['name'];
+        $data['visible'] = $_POST['visible'];
+        $data['updated_at'] = date('Y-m-d H:i:s');
+
+        $this->userModel->editSkill($skillId, $data);
+        return header('Location: http://portfoliapp.com/dashboard');
+    }
 }
+
 ?>

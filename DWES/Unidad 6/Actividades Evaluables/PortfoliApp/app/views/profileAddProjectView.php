@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agrega un trabajo</title>
+    <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/formPage.css">
 </head>
 <body>
@@ -15,6 +16,7 @@
         echo('</div>');
     }
     ?>
+    <?php include_once('header.php') ?>
     <h1>Agrega un nuevo proyecto</h1>
     <main>
         <form action="" method="POST" enctype="multipart/form-data">
